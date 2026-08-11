@@ -3,26 +3,46 @@ version: '3.8'
 services:
   reactor-core:
     build: ./reactor-core
-    volumes:
-      - ./reactor-core:/app
+    ports:
+      - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - TRADING_WORKER_URL=http://worker-trading:8002
+      - EXECUTIVE_WORKER_URL=http://worker-executive:8003
+      - SYSTEM_WORKER_URL=http://worker-system:8004
+      - OBSERVER_WORKER_URL=http://worker-observer:8005
     networks:
       - jarvis-net
+    depends_on:
+      - worker-trading
+      - worker-executive
+      - worker-system
+      - worker-observer
 
   worker-trading:
     build: ./worker-trading
-    environment:
-      - PORT=8002
-      - WORKER_ID=trading
+    ports:
+      - "8002:8002"
     networks:
       - jarvis-net
 
   worker-executive:
     build: ./worker-executive
-    environment:
-      - PORT=8003
-      - WORKER_ID=executive
+    ports:
+      - "8003:8003"
+    networks:
+      - jarvis-net
+
+  worker-system:
+    build: ./worker-system
+    ports:
+      - "8004:8004"
+    networks:
+      - jarvis-net
+
+  worker-observer:
+    build: ./worker-observer
+    ports:
+      - "8005:8005"
     networks:
       - jarvis-net
 
