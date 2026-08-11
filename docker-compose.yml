@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  reactor-core:
+    build: ./reactor-core
+    volumes:
+      - ./reactor-core:/app
+    environment:
+      - NODE_ENV=production
+    networks:
+      - jarvis-net
+
+  worker-trading:
+    build: ./worker-trading
+    environment:
+      - PORT=8002
+      - WORKER_ID=trading
+    networks:
+      - jarvis-net
+
+  worker-executive:
+    build: ./worker-executive
+    environment:
+      - PORT=8003
+      - WORKER_ID=executive
+    networks:
+      - jarvis-net
+
+networks:
+  jarvis-net:
+    driver: bridge
