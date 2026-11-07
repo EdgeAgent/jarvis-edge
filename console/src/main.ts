@@ -4,6 +4,8 @@
 // posts, or executes anything on its own — drafts wait for a human.
 
 import { createReactor, type CoreMode } from "./reactor";
+import { initViews, emitFeed, addIdea, addGoal } from "./views";
+import { initTeam } from "./team";
 
 /* ---------------------------------- types --------------------------------- */
 
@@ -329,7 +331,7 @@ function setActiveModel(name: string, announce: boolean) {
   coreModelEl.textContent = name;
   renderModels();
   renderWorkers();
-  if (announce) addMsg("system", `Active model switched to ${name}.`);
+  if (announce) { addMsg("system", `Active model switched to ${name}.`); emitFeed("system", `Active model switched to ${name}.`); }
 }
 
 $("btn-refresh-models").addEventListener("click", () => void refreshModels());
@@ -412,6 +414,7 @@ brainFileInput.addEventListener("change", () => {
       renderBrain();
       renderWorkers();
       addMsg("system", `Second brain: “${file.name}” indexed (${chunks.length} chunks). Ask me about it.`);
+      emitFeed("brain", `Second brain indexed “${file.name}” (${chunks.length} chunks).`);
     };
     reader.readAsText(file);
   }
@@ -505,6 +508,7 @@ function pushQueue(kind: string, title: string, body: string) {
   store.set("je-queue", queue);
   renderQueue();
   renderWorkers();
+  emitFeed("queue", `Queued for approval: ${title}`);
 }
 
 /* --------------------------------- workers --------------------------------- */
@@ -586,7 +590,7 @@ async function chatWithModel(userText: string) {
     {
       role: "system",
       content:
-        "You are Jarvis, the operator of Jarvis-Edge — a local-first executive command center. Be sharp, concise and practical. You run entirely on the user's own machine via Ollama. Never claim you sent an email, placed a trade, or booked anything: drafts go to the user's approval queue. If asked for facts from the user's documents, rely on the provided second-brain excerpts and say when they do not cover the answer.",
+        "You are Jarvis — the boss of this orchestra and the operator's answers man. The operator gives direction; you choose the route, and you always take the best, fastest, most secure route available. Be bold in approach — take smart risks in how you solve things, try the stronger play first, and do not hedge with five options when one route is clearly best: name it and go. Boldness never applies to the gates: you never send, post, trade, book, or delete without the operator's approval in the queue; you never touch credentials; blocked contacts stay blocked. Be sharp, concise and practical. You run entirely on the operator's own machine via Ollama. If asked for facts from the operator's documents, rely on the provided second-brain excerpts and say when they do not cover the answer.",
     },
   ];
   const brainHits = retrieveBrain(userText);
@@ -660,6 +664,7 @@ async function handleCommand(raw: string) {
   const text = raw.trim();
   if (!text) return;
   addMsg("user", text);
+  emitFeed("command", text.length > 110 ? text.slice(0, 110) + "…" : text);
   cmdInput.value = "";
   const lower = text.toLowerCase();
 
@@ -705,6 +710,24 @@ async function handleCommand(raw: string) {
     const body = `Hi ${to},\n\nReaching out about ${topic}. I would like to set up a short call this week to walk through the details and next steps.\n\nIf a time works on your end, send it over and I will lock it in.\n\n— Drafted by Jarvis-Edge. Review before sending; nothing has been sent.`;
     pushQueue("EMAIL DRAFT", `Email to ${to} — ${topic}`, body);
     addMsg("jarvis", `Draft written and parked in the approval queue: an email to ${to} about ${topic}. It has not been sent — review it on the right whenever you are ready.`);
+    return;
+  }
+  const ideaMatch = text.match(/^idea (.+)$/i);
+  if (ideaMatch) {
+    addIdea(ideaMatch[1]);
+    addMsg("jarvis", "Banked in Ideas. Promote it to a goal or hand it to the Dev Team whenever you're ready.");
+    return;
+  }
+  const goalMatch = text.match(/^goal (.+)$/i);
+  if (goalMatch) {
+    addGoal(goalMatch[1]);
+    addMsg("jarvis", "Goal set. Break it into steps in the Goals view, or send it straight to the Dev Team.");
+    return;
+  }
+  const missionMatch = text.match(/^mission (.+)$/i);
+  if (missionMatch) {
+    window.dispatchEvent(new CustomEvent<string>("je-mission", { detail: missionMatch[1] }));
+    addMsg("jarvis", "Mission handed to the Dev Team — watch them work in the Dev Team view.");
     return;
   }
   const noteMatch = text.match(/^note (.+)$/i);
@@ -755,11 +778,21 @@ function tickClock() {
 window.setInterval(tickClock, 1000);
 tickClock();
 
+/* ------------------------------ cross-module ------------------------------- */
+
+window.addEventListener("je-queue-add", (e) => {
+  const d = (e as CustomEvent<{ kind: string; title: string; body: string }>).detail;
+  pushQueue(d.kind, d.title, d.body);
+});
+
 /* ----------------------------------- boot ---------------------------------- */
 
 renderBrain();
 renderQueue();
 renderWorkers();
+initViews({ transcriptText: () => transcriptEl.innerText });
+initTeam();
+emitFeed("system", "Jarvis-Edge console started.");
 void refreshModels();
 addMsg("system", "Reactor Core online · all processing stays on this machine");
 addMsg("jarvis", "Jarvis-Edge at your service. My models, memory and voice run locally — no paid APIs, no subscriptions. Talk to me, type a command, or say “help” to see the playbook.");

@@ -34,8 +34,18 @@
           </div>
         </div>
       </header>
+      <nav class="mainnav" aria-label="Console views">
+        <button type="button" class="nav-btn active" data-nav="command">◉ Command</button>
+        <button type="button" class="nav-btn" data-nav="feed">Feed</button>
+        <button type="button" class="nav-btn" data-nav="ideas">Ideas</button>
+        <button type="button" class="nav-btn" data-nav="goals">Goals</button>
+        <button type="button" class="nav-btn" data-nav="artifacts">Artifacts</button>
+        <button type="button" class="nav-btn" data-nav="agents">⚒ Dev Team</button>
+      </nav>
 
-      <main class="layout">
+
+      <main id="views">
+      <section id="view-command" class="layout view active">
         <aside class="rail rail-left">
           <section class="panel" aria-labelledby="models-h">
             <div class="panel-head">
@@ -123,7 +133,61 @@
             </div>
           </section>
         </aside>
-      </main>
+      
+      </section>
+
+      <section id="view-feed" class="view" hidden>
+        <div class="view-head">
+          <h2 class="view-title">Feed</h2>
+          <button class="mini-btn" id="btn-feed-clear" type="button">Clear feed</button>
+        </div>
+        <p class="view-sub">Everything Jarvis does, in order — commands, drafts, approvals, agent runs. If it happened, it's here.</p>
+        <ul class="feed-list" id="feed-list"></ul>
+      </section>
+
+      <section id="view-ideas" class="view" hidden>
+        <div class="view-head"><h2 class="view-title">Ideas</h2></div>
+        <p class="view-sub">Catch ideas before they evaporate. Promote one to a Goal, or hand it straight to the Dev Team as a mission.</p>
+        <form class="inline-form" id="idea-form">
+          <input id="idea-title" type="text" placeholder="The idea — one line" autocomplete="off" />
+          <input id="idea-note" type="text" placeholder="Why it matters (optional)" autocomplete="off" />
+          <button class="cmd-send" type="submit">Add idea</button>
+        </form>
+        <div class="card-grid" id="idea-grid"></div>
+      </section>
+
+      <section id="view-goals" class="view" hidden>
+        <div class="view-head"><h2 class="view-title">Goals</h2></div>
+        <p class="view-sub">Outcomes you're driving at, broken into steps you can tick off. Send any goal to the Dev Team and they'll work it in parallel.</p>
+        <form class="inline-form" id="goal-form">
+          <input id="goal-title" type="text" placeholder="The goal — e.g. Launch the lead-pack landing page" autocomplete="off" />
+          <button class="cmd-send" type="submit">Add goal</button>
+        </form>
+        <div class="card-grid" id="goal-grid"></div>
+      </section>
+
+      <section id="view-artifacts" class="view" hidden>
+        <div class="view-head">
+          <h2 class="view-title">Artifacts</h2>
+          <button class="mini-btn" id="btn-export-transcript" type="button">Export transcript</button>
+        </div>
+        <p class="view-sub">Finished work product — mission reports, approved drafts, exports. Everything here can be downloaded and used.</p>
+        <div class="artifact-list" id="artifact-list"></div>
+      </section>
+
+      <section id="view-agents" class="view" hidden>
+        <div class="view-head"><h2 class="view-title">Dev Team — Agents &amp; Sub-Agents</h2></div>
+        <p class="view-sub">Give the team a mission. The <b>Lead</b> plans it, <b>Scout</b> and <b>Builder</b> work <b>in parallel</b> in their own sandboxes, and the <b>Reviewer</b> attacks the result before it reaches you. Every agent runs on your active local model with an isolated context — no agent sees another's scratch work, only its assignment and the final hand-offs.</p>
+        <form class="inline-form" id="mission-form">
+          <input id="mission-input" type="text" placeholder="Mission — e.g. Draft a landing page for a $598 lead pack aimed at London realtors" autocomplete="off" />
+          <button class="cmd-send" type="submit" id="btn-mission">Launch mission</button>
+        </form>
+        <div class="team-roster" id="team-roster"></div>
+        <div class="sandbox-grid" id="sandbox-grid"></div>
+        <p class="hint">Sandbox honesty: in the browser, a sandbox means an isolated context, log and workspace inside this page. OS-level process sandboxes arrive with the Stage-2 desktop bridge (see docs/ROADMAP-95.md). If Ollama is offline, the team stands down and says so — agents never fake work.</p>
+      </section>
+    </main>
+
 
       <footer class="footbar">
         <span>Local-first by design — models, memory and voice run on your machine.</span>
