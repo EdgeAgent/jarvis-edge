@@ -1,1 +1,65 @@
-Ly8gTW90aW9uIGxheWVyIOKAlCBhbmltZS5qcyAoTUlULCBnaXRodWIuY29tL2p1bGlhbmdhcm5pZXIvYW5pbWUpLgovLyBUYXN0ZWZ1bCBtaWNyby1hbmltYXRpb24gb25seTogdmlld3Mgc2V0dGxlIGluLCBmZWVkIGl0ZW1zIHNsaWRlLAovLyBxdWV1ZSBpdGVtcyBhY2tub3dsZWRnZSB0aGUgb3BlcmF0b3IncyB0YXAuIElmIGFuaW1lLmpzIGZhaWxzIHRvCi8vIGxvYWQsIG9yIHRoZSBvcGVyYXRvciBwcmVmZXJzIHJlZHVjZWQgbW90aW9uLCBldmVyeXRoaW5nIHNpbXBseQovLyBhcHBlYXJzIOKAlCBtb3Rpb24gaXMgZ2FybmlzaCwgbmV2ZXIgYSBkZXBlbmRlbmN5LgoKdHlwZSBBbmltZU1vZHVsZSA9IHR5cGVvZiBpbXBvcnQoImFuaW1lanMiKTsKCmxldCBhbmltZVByb21pc2U6IFByb21pc2U8QW5pbWVNb2R1bGUgfCBudWxsPiB8IG51bGwgPSBudWxsOwoKZnVuY3Rpb24gbG9hZEFuaW1lKCk6IFByb21pc2U8QW5pbWVNb2R1bGUgfCBudWxsPiB7CiAgaWYgKCFhbmltZVByb21pc2UpIHsKICAgIGFuaW1lUHJvbWlzZSA9IGltcG9ydCgiYW5pbWVqcyIpLmNhdGNoKCgpID0+IG51bGwpOwogIH0KICByZXR1cm4gYW5pbWVQcm9taXNlOwp9CgpmdW5jdGlvbiByZWR1Y2VkTW90aW9uKCk6IGJvb2xlYW4gewogIHRyeSB7IHJldHVybiB3aW5kb3cubWF0Y2hNZWRpYSgiKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246IHJlZHVjZSkiKS5tYXRjaGVzOyB9CiAgY2F0Y2ggeyByZXR1cm4gZmFsc2U7IH0KfQoKLyoqIFNldHRsZSBhIGZyZXNobHktc2hvd24gdmlldyBpbjogcmlzZSAxMHB4ICsgZmFkZSwgMjQwbXMuICovCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBhbmltYXRlVmlld0luKGVsOiBIVE1MRWxlbWVudCB8IG51bGwpOiBQcm9taXNlPHZvaWQ+IHsKICBpZiAoIWVsIHx8IHJlZHVjZWRNb3Rpb24oKSkgcmV0dXJuOwogIGNvbnN0IGFuaW1lID0gYXdhaXQgbG9hZEFuaW1lKCk7CiAgaWYgKCFhbmltZSkgcmV0dXJuOwogIHRyeSB7CiAgICBhbmltZS5hbmltYXRlKGVsLCB7CiAgICAgIG9wYWNpdHk6IFswLCAxXSwKICAgICAgdHJhbnNsYXRlWTogWzEwLCAwXSwKICAgICAgZHVyYXRpb246IDI0MCwKICAgICAgZWFzZTogIm91dFF1YWQiLAogICAgfSk7CiAgfSBjYXRjaCB7IC8qIGdhcm5pc2ggb25seSAqLyB9Cn0KCi8qKiBTbGlkZSArIGZhZGUgYSBsaXN0IGl0ZW0gaW4gKGZlZWQgZW50cmllcywgcXVldWUgaXRlbXMpLiAqLwpleHBvcnQgYXN5bmMgZnVuY3Rpb24gYW5pbWF0ZUl0ZW1JbihlbDogSFRNTEVsZW1lbnQgfCBudWxsKTogUHJvbWlzZTx2b2lkPiB7CiAgaWYgKCFlbCB8fCByZWR1Y2VkTW90aW9uKCkpIHJldHVybjsKICBjb25zdCBhbmltZSA9IGF3YWl0IGxvYWRBbmltZSgpOwogIGlmICghYW5pbWUpIHJldHVybjsKICB0cnkgewogICAgYW5pbWUuYW5pbWF0ZShlbCwgewogICAgICBvcGFjaXR5OiBbMCwgMV0sCiAgICAgIHRyYW5zbGF0ZVg6IFstOCwgMF0sCiAgICAgIGR1cmF0aW9uOiAyMjAsCiAgICAgIGVhc2U6ICJvdXRRdWFkIiwKICAgIH0pOwogIH0gY2F0Y2ggeyAvKiBnYXJuaXNoIG9ubHkgKi8gfQp9CgovKiogQSBzaG9ydCBjb25maXJtYXRpb24gcHVsc2Ug4oCUIHVzZWQgd2hlbiBhbiBhcHByb3ZlZCBpdGVtIGV4ZWN1dGVzLiAqLwpleHBvcnQgYXN5bmMgZnVuY3Rpb24gcHVsc2UoZWw6IEhUTUxFbGVtZW50IHwgbnVsbCk6IFByb21pc2U8dm9pZD4gewogIGlmICghZWwgfHwgcmVkdWNlZE1vdGlvbigpKSByZXR1cm47CiAgY29uc3QgYW5pbWUgPSBhd2FpdCBsb2FkQW5pbWUoKTsKICBpZiAoIWFuaW1lKSByZXR1cm47CiAgdHJ5IHsKICAgIGFuaW1lLmFuaW1hdGUoZWwsIHsKICAgICAgc2NhbGU6IFsxLCAxLjAyNSwgMV0sCiAgICAgIGR1cmF0aW9uOiAzMjAsCiAgICAgIGVhc2U6ICJpbk91dFF1YWQiLAogICAgfSk7CiAgfSBjYXRjaCB7IC8qIGdhcm5pc2ggb25seSAqLyB9Cn0K
+// Motion layer — anime.js (MIT, github.com/juliangarnier/anime).
+// Tasteful micro-animation only: views settle in, feed items slide,
+// queue items acknowledge the operator's tap. If anime.js fails to
+// load, or the operator prefers reduced motion, everything simply
+// appears — motion is garnish, never a dependency.
+
+type AnimeModule = typeof import("animejs");
+
+let animePromise: Promise<AnimeModule | null> | null = null;
+
+function loadAnime(): Promise<AnimeModule | null> {
+  if (!animePromise) {
+    animePromise = import("animejs").catch(() => null);
+  }
+  return animePromise;
+}
+
+function reducedMotion(): boolean {
+  try { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  catch { return false; }
+}
+
+/** Settle a freshly-shown view in: rise 10px + fade, 240ms. */
+export async function animateViewIn(el: HTMLElement | null): Promise<void> {
+  if (!el || reducedMotion()) return;
+  const anime = await loadAnime();
+  if (!anime) return;
+  try {
+    anime.animate(el, {
+      opacity: [0, 1],
+      translateY: [10, 0],
+      duration: 240,
+      ease: "outQuad",
+    });
+  } catch { /* garnish only */ }
+}
+
+/** Slide + fade a list item in (feed entries, queue items). */
+export async function animateItemIn(el: HTMLElement | null): Promise<void> {
+  if (!el || reducedMotion()) return;
+  const anime = await loadAnime();
+  if (!anime) return;
+  try {
+    anime.animate(el, {
+      opacity: [0, 1],
+      translateX: [-8, 0],
+      duration: 220,
+      ease: "outQuad",
+    });
+  } catch { /* garnish only */ }
+}
+
+/** A short confirmation pulse — used when an approved item executes. */
+export async function pulse(el: HTMLElement | null): Promise<void> {
+  if (!el || reducedMotion()) return;
+  const anime = await loadAnime();
+  if (!anime) return;
+  try {
+    anime.animate(el, {
+      scale: [1, 1.025, 1],
+      duration: 320,
+      ease: "inOutQuad",
+    });
+  } catch { /* garnish only */ }
+}

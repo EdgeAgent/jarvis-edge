@@ -1,1 +1,140 @@
-Ly8gU2FuZGJveCBQcmV2aWV3IOKAlCByZW5kZXIgYXBwcywgSFRNTCBhcnRpZmFjdHMgYW5kIGdlbmVyYXRlZCBwYWdlcwovLyBpbnNpZGUgYSBnZW51aW5lbHkgaXNvbGF0ZWQgZnJhbWUuIFRoZSBpZnJhbWUgcnVucyB3aXRoCi8vIHNhbmRib3g9ImFsbG93LXNjcmlwdHMiIGFuZCBOTyBhbGxvdy1zYW1lLW9yaWdpbjogcHJldmlld2VkIGNvZGUgZ2V0cwovLyBhbiBvcGFxdWUgb3JpZ2luLCBzbyBpdCBjYW5ub3QgdG91Y2ggdGhlIGNvbnNvbGUsIGl0cyBsb2NhbFN0b3JhZ2UsCi8vIG9yIHRoZSBvcGVyYXRvcidzIGRhdGEuIEl0IGNhbiBydW4gaXRzIG93biBzY3JpcHRzIGFuZCBub3RoaW5nIGVsc2UuCi8vCi8vIFNvdXJjZXM6IHBhc3RlIEhUTUwsIG9wZW4gYSBmaWxlLCBsb2FkIHRoZSBidWlsdC1pbiBzYW1wbGUgYXBwLCBvcgovLyBzZW5kIGFueSBIVE1MIGFydGlmYWN0IGhlcmUgZnJvbSB0aGUgQXJ0aWZhY3RzIHZpZXcgKCJQcmV2aWV3IiBidXR0b24KLy8g4oaSIHdpbmRvdyBldmVudCAiamUtcHJldmlldyIgeyBkZXRhaWw6IHN0cmluZyB9KS4KCmltcG9ydCB7IGV4dHJhY3RIdG1sLCBsb29rc0h0bWwgfSBmcm9tICIuL2V4ZWN1dGUiOwppbXBvcnQgeyBlbWl0RmVlZCwgc3dpdGNoVmlldyB9IGZyb20gIi4vdmlld3MiOwoKaW50ZXJmYWNlIEFydGlmYWN0TGlrZSB7IGlkOiBzdHJpbmc7IHRpdGxlOiBzdHJpbmc7IGtpbmQ6IHN0cmluZzsgYm9keTogc3RyaW5nOyB0czogbnVtYmVyIH0KCmNvbnN0ICQgPSA8VCBleHRlbmRzIEhUTUxFbGVtZW50PihpZDogc3RyaW5nKSA9PiBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChpZCkgYXMgVDsKCmNvbnN0IFNBTVBMRV9BUFAgPSBgPCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgo8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEiIC8+Cjx0aXRsZT5NaXNzaW9uIENvbnRyb2wg4oCUIHNhbXBsZSBhcHA8L3RpdGxlPgo8c3R5bGU+CiAgYm9keSB7IG1hcmdpbjowOyBmb250LWZhbWlseTogc3lzdGVtLXVpLCBzYW5zLXNlcmlmOyBiYWNrZ3JvdW5kOiMwYTBlMTQ7IGNvbG9yOiNlOGVjZjE7IGRpc3BsYXk6Z3JpZDsgcGxhY2UtaXRlbXM6Y2VudGVyOyBtaW4taGVpZ2h0OjEwMHZoOyB9CiAgLmNhcmQgeyBiYWNrZ3JvdW5kOiMxMDE3MjI7IGJvcmRlcjoxcHggc29saWQgIzIyMzA0YTsgYm9yZGVyLXJhZGl1czoxNnB4OyBwYWRkaW5nOjI4cHggMzJweDsgdGV4dC1hbGlnbjpjZW50ZXI7IHdpZHRoOm1pbig0MjBweCwgODh2dyk7IH0KICBoMSB7IGZvbnQtc2l6ZToyMHB4OyBtYXJnaW46MCAwIDZweDsgfQogIHAgeyBjb2xvcjojOGZhM2JmOyBtYXJnaW46MCAwIDE4cHg7IGZvbnQtc2l6ZToxNHB4OyB9CiAgLmJpZyB7IGZvbnQtc2l6ZTo1NnB4OyBmb250LXdlaWdodDo3MDA7IGNvbG9yOiM2ZmQ4ZTc7IG1hcmdpbjo4cHggMCAxNnB4OyB9CiAgYnV0dG9uIHsgYmFja2dyb3VuZDojZTllNGQ4OyBib3JkZXI6MDsgY29sb3I6IzBhMGMwZjsgZm9udC13ZWlnaHQ6NzAwOyBwYWRkaW5nOjEycHggMjJweDsgYm9yZGVyLXJhZGl1czoxMHB4OyBjdXJzb3I6cG9pbnRlcjsgZm9udC1zaXplOjE1cHg7IH0KICBidXR0b246YWN0aXZlIHsgdHJhbnNmb3JtOiBzY2FsZSguOTcpOyB9CiAgLmJhciB7IGhlaWdodDoxMHB4OyBiYWNrZ3JvdW5kOiMxYTI0MzY7IGJvcmRlci1yYWRpdXM6OTlweDsgb3ZlcmZsb3c6aGlkZGVuOyBtYXJnaW4tdG9wOjIwcHg7IH0KICAuYmFyIGkgeyBkaXNwbGF5OmJsb2NrOyBoZWlnaHQ6MTAwJTsgd2lkdGg6MCU7IGJhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDkwZGVnLCM2ZmQ4ZTcsI2U5ZTRkOCk7IHRyYW5zaXRpb246d2lkdGggLjRzOyB9Cjwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CiAgPGRpdiBjbGFzcz0iY2FyZCI+CiAgICA8aDE+8J+agCBNaXNzaW9uIENvbnRyb2w8L2gxPgogICAgPHA+QSB0aW55IGFwcCBydW5uaW5nIGluc2lkZSB0aGUgSmFydmlzIHNhbmRib3guIEl0IGNhbiBydW4gc2NyaXB0cyDigJQgaXQgY2Fubm90IHRvdWNoIHRoZSBjb25zb2xlLjwvcD4KICAgIDxkaXYgY2xhc3M9ImJpZyIgaWQ9ImNvdW50Ij4wPC9kaXY+CiAgICA8YnV0dG9uIGlkPSJnbyIgdHlwZT0iYnV0dG9uIj5MYXVuY2ggKzE8L2J1dHRvbj4KICAgIDxkaXYgY2xhc3M9ImJhciI+PGkgaWQ9ImZpbGwiPjwvaT48L2Rpdj4KICA8L2Rpdj4KPHNjcmlwdD4KICBsZXQgbiA9IDA7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImdvIikuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCAoKSA9PiB7CiAgICBuKys7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY291bnQiKS50ZXh0Q29udGVudCA9IG47CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiZmlsbCIpLnN0eWxlLndpZHRoID0gTWF0aC5taW4oMTAwLCBuICogNSkgKyAiJSI7CiAgfSk7Cjwvc2NyaXB0Pgo8L2JvZHk+CjwvaHRtbD5gOwoKZnVuY3Rpb24gYXJ0aWZhY3RzRnJvbVN0b3JlKCk6IEFydGlmYWN0TGlrZVtdIHsKICB0cnkgewogICAgY29uc3QgcmF3ID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oImplLWFydGlmYWN0cyIpOwogICAgcmV0dXJuIHJhdyA/IChKU09OLnBhcnNlKHJhdykgYXMgQXJ0aWZhY3RMaWtlW10pIDogW107CiAgfSBjYXRjaCB7IHJldHVybiBbXTsgfQp9CgpleHBvcnQgZnVuY3Rpb24gaW5pdFByZXZpZXcoKSB7CiAgY29uc3QgZnJhbWUgPSAkPEhUTUxJRnJhbWVFbGVtZW50PigicHJldmlldy1mcmFtZSIpOwogIGNvbnN0IHNvdXJjZSA9ICQ8SFRNTFRleHRBcmVhRWxlbWVudD4oInByZXZpZXctc291cmNlIik7CiAgY29uc3QgcGlja2VyID0gJDxIVE1MU2VsZWN0RWxlbWVudD4oInByZXZpZXctcGlja2VyIik7CiAgY29uc3QgdGl0bGVFbCA9ICQoInByZXZpZXctdGl0bGUiKTsKCiAgZnVuY3Rpb24gcmVuZGVyKGh0bWw6IHN0cmluZywgbGFiZWw6IHN0cmluZykgewogICAgZnJhbWUuc3JjZG9jID0gaHRtbDsKICAgIHRpdGxlRWwudGV4dENvbnRlbnQgPSBsYWJlbDsKICB9CgogIGZ1bmN0aW9uIHJlZnJlc2hQaWNrZXIoKSB7CiAgICBjb25zdCBhcnRzID0gYXJ0aWZhY3RzRnJvbVN0b3JlKCkuZmlsdGVyKChhKSA9PiBsb29rc0h0bWwoYS5ib2R5KSk7CiAgICBwaWNrZXIuaW5uZXJIVE1MID0gIiI7CiAgICBjb25zdCBub25lID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgib3B0aW9uIik7CiAgICBub25lLnZhbHVlID0gIiI7CiAgICBub25lLnRleHRDb250ZW50ID0gYXJ0cy5sZW5ndGggPyAiT3BlbiBhbiBIVE1MIGFydGlmYWN04oCmIiA6ICJObyBIVE1MIGFydGlmYWN0cyB5ZXQiOwogICAgcGlja2VyLmFwcGVuZENoaWxkKG5vbmUpOwogICAgZm9yIChjb25zdCBhIG9mIGFydHMpIHsKICAgICAgY29uc3Qgb3B0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgib3B0aW9uIik7CiAgICAgIG9wdC52YWx1ZSA9IGEuaWQ7CiAgICAgIG9wdC50ZXh0Q29udGVudCA9IGAke2EudGl0bGV9IMK3ICR7bmV3IERhdGUoYS50cykudG9Mb2NhbGVEYXRlU3RyaW5nKCl9YDsKICAgICAgcGlja2VyLmFwcGVuZENoaWxkKG9wdCk7CiAgICB9CiAgfQoKICAkKCJidG4tcHJldmlldy1ydW4iKS5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsICgpID0+IHsKICAgIGNvbnN0IGh0bWwgPSBzb3VyY2UudmFsdWUudHJpbSgpOwogICAgaWYgKCFodG1sKSByZXR1cm47CiAgICByZW5kZXIoaHRtbCwgIkN1c3RvbSBIVE1MIOKAlCBwYXN0ZWQgc291cmNlIik7CiAgICBlbWl0RmVlZCgic3lzdGVtIiwgIlNhbmRib3ggcHJldmlldyByZW5kZXJlZCBwYXN0ZWQgSFRNTC4iKTsKICB9KTsKCiAgJCgiYnRuLXByZXZpZXctc2FtcGxlIikuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCAoKSA9PiB7CiAgICBzb3VyY2UudmFsdWUgPSBTQU1QTEVfQVBQOwogICAgcmVuZGVyKFNBTVBMRV9BUFAsICJTYW1wbGUgYXBwIOKAlCBNaXNzaW9uIENvbnRyb2wiKTsKICAgIGVtaXRGZWVkKCJzeXN0ZW0iLCAiU2FuZGJveCBwcmV2aWV3IGxvYWRlZCB0aGUgc2FtcGxlIGFwcC4iKTsKICB9KTsKCiAgcGlja2VyLmFkZEV2ZW50TGlzdGVuZXIoImNoYW5nZSIsICgpID0+IHsKICAgIGNvbnN0IGFydCA9IGFydGlmYWN0c0Zyb21TdG9yZSgpLmZpbmQoKGEpID0+IGEuaWQgPT09IHBpY2tlci52YWx1ZSk7CiAgICBpZiAoIWFydCkgcmV0dXJuOwogICAgY29uc3QgaHRtbCA9IGV4dHJhY3RIdG1sKGFydC5ib2R5KTsKICAgIHNvdXJjZS52YWx1ZSA9IGh0bWw7CiAgICByZW5kZXIoaHRtbCwgYXJ0LnRpdGxlKTsKICAgIGVtaXRGZWVkKCJzeXN0ZW0iLCBgU2FuZGJveCBwcmV2aWV3IG9wZW5lZCBhcnRpZmFjdCDigJwke2FydC50aXRsZX3igJ0uYCk7CiAgfSk7CgogIGNvbnN0IGZpbGVJbnB1dCA9ICQ8SFRNTElucHV0RWxlbWVudD4oInByZXZpZXctZmlsZSIpOwogICQoImJ0bi1wcmV2aWV3LWZpbGUiKS5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsICgpID0+IGZpbGVJbnB1dC5jbGljaygpKTsKICBmaWxlSW5wdXQuYWRkRXZlbnRMaXN0ZW5lcigiY2hhbmdlIiwgKCkgPT4gewogICAgY29uc3QgZmlsZSA9IGZpbGVJbnB1dC5maWxlcz8uWzBdOwogICAgZmlsZUlucHV0LnZhbHVlID0gIiI7CiAgICBpZiAoIWZpbGUpIHJldHVybjsKICAgIGNvbnN0IHJlYWRlciA9IG5ldyBGaWxlUmVhZGVyKCk7CiAgICByZWFkZXIub25sb2FkID0gKCkgPT4gewogICAgICBjb25zdCBodG1sID0gU3RyaW5nKHJlYWRlci5yZXN1bHQgPz8gIiIpOwogICAgICBzb3VyY2UudmFsdWUgPSBodG1sOwogICAgICByZW5kZXIoaHRtbCwgZmlsZS5uYW1lKTsKICAgICAgZW1pdEZlZWQoInN5c3RlbSIsIGBTYW5kYm94IHByZXZpZXcgb3BlbmVkICR7ZmlsZS5uYW1lfS5gKTsKICAgIH07CiAgICByZWFkZXIucmVhZEFzVGV4dChmaWxlKTsKICB9KTsKCiAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoImplLXByZXZpZXciLCAoZSkgPT4gewogICAgY29uc3QgYm9keSA9IChlIGFzIEN1c3RvbUV2ZW50PHN0cmluZz4pLmRldGFpbCA/PyAiIjsKICAgIGlmICghYm9keSkgcmV0dXJuOwogICAgY29uc3QgaHRtbCA9IGV4dHJhY3RIdG1sKGJvZHkpOwogICAgc291cmNlLnZhbHVlID0gaHRtbDsKICAgIHJlbmRlcihodG1sLCAiQXJ0aWZhY3QgcHJldmlldyIpOwogICAgcmVmcmVzaFBpY2tlcigpOwogICAgc3dpdGNoVmlldygicHJldmlldyIpOwogIH0pOwogIHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKCJqZS1hcnRpZmFjdHMtY2hhbmdlZCIsIHJlZnJlc2hQaWNrZXIpOwoKICByZWZyZXNoUGlja2VyKCk7CiAgc291cmNlLnZhbHVlID0gU0FNUExFX0FQUDsKICByZW5kZXIoU0FNUExFX0FQUCwgIlNhbXBsZSBhcHAg4oCUIE1pc3Npb24gQ29udHJvbCIpOwp9Cg==
+// Sandbox Preview — render apps, HTML artifacts and generated pages
+// inside a genuinely isolated frame. The iframe runs with
+// sandbox="allow-scripts" and NO allow-same-origin: previewed code gets
+// an opaque origin, so it cannot touch the console, its localStorage,
+// or the operator's data. It can run its own scripts and nothing else.
+//
+// Sources: paste HTML, open a file, load the built-in sample app, or
+// send any HTML artifact here from the Artifacts view ("Preview" button
+// → window event "je-preview" { detail: string }).
+
+import { extractHtml, looksHtml } from "./execute";
+import { emitFeed, switchView } from "./views";
+
+interface ArtifactLike { id: string; title: string; kind: string; body: string; ts: number }
+
+const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+
+const SAMPLE_APP = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mission Control — sample app</title>
+<style>
+  body { margin:0; font-family: system-ui, sans-serif; background:#0a0e14; color:#e8ecf1; display:grid; place-items:center; min-height:100vh; }
+  .card { background:#101722; border:1px solid #22304a; border-radius:16px; padding:28px 32px; text-align:center; width:min(420px, 88vw); }
+  h1 { font-size:20px; margin:0 0 6px; }
+  p { color:#8fa3bf; margin:0 0 18px; font-size:14px; }
+  .big { font-size:56px; font-weight:700; color:#6fd8e7; margin:8px 0 16px; }
+  button { background:#e9e4d8; border:0; color:#0a0c0f; font-weight:700; padding:12px 22px; border-radius:10px; cursor:pointer; font-size:15px; }
+  button:active { transform: scale(.97); }
+  .bar { height:10px; background:#1a2436; border-radius:99px; overflow:hidden; margin-top:20px; }
+  .bar i { display:block; height:100%; width:0%; background:linear-gradient(90deg,#6fd8e7,#e9e4d8); transition:width .4s; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>🚀 Mission Control</h1>
+    <p>A tiny app running inside the Jarvis sandbox. It can run scripts — it cannot touch the console.</p>
+    <div class="big" id="count">0</div>
+    <button id="go" type="button">Launch +1</button>
+    <div class="bar"><i id="fill"></i></div>
+  </div>
+<script>
+  let n = 0;
+  document.getElementById("go").addEventListener("click", () => {
+    n++;
+    document.getElementById("count").textContent = n;
+    document.getElementById("fill").style.width = Math.min(100, n * 5) + "%";
+  });
+</script>
+</body>
+</html>`;
+
+function artifactsFromStore(): ArtifactLike[] {
+  try {
+    const raw = localStorage.getItem("je-artifacts");
+    return raw ? (JSON.parse(raw) as ArtifactLike[]) : [];
+  } catch { return []; }
+}
+
+export function initPreview() {
+  const frame = $<HTMLIFrameElement>("preview-frame");
+  const source = $<HTMLTextAreaElement>("preview-source");
+  const picker = $<HTMLSelectElement>("preview-picker");
+  const titleEl = $("preview-title");
+
+  function render(html: string, label: string) {
+    frame.srcdoc = html;
+    titleEl.textContent = label;
+  }
+
+  function refreshPicker() {
+    const arts = artifactsFromStore().filter((a) => looksHtml(a.body));
+    picker.innerHTML = "";
+    const none = document.createElement("option");
+    none.value = "";
+    none.textContent = arts.length ? "Open an HTML artifact…" : "No HTML artifacts yet";
+    picker.appendChild(none);
+    for (const a of arts) {
+      const opt = document.createElement("option");
+      opt.value = a.id;
+      opt.textContent = `${a.title} · ${new Date(a.ts).toLocaleDateString()}`;
+      picker.appendChild(opt);
+    }
+  }
+
+  $("btn-preview-run").addEventListener("click", () => {
+    const html = source.value.trim();
+    if (!html) return;
+    render(html, "Custom HTML — pasted source");
+    emitFeed("system", "Sandbox preview rendered pasted HTML.");
+  });
+
+  $("btn-preview-sample").addEventListener("click", () => {
+    source.value = SAMPLE_APP;
+    render(SAMPLE_APP, "Sample app — Mission Control");
+    emitFeed("system", "Sandbox preview loaded the sample app.");
+  });
+
+  picker.addEventListener("change", () => {
+    const art = artifactsFromStore().find((a) => a.id === picker.value);
+    if (!art) return;
+    const html = extractHtml(art.body);
+    source.value = html;
+    render(html, art.title);
+    emitFeed("system", `Sandbox preview opened artifact “${art.title}”.`);
+  });
+
+  const fileInput = $<HTMLInputElement>("preview-file");
+  $("btn-preview-file").addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files?.[0];
+    fileInput.value = "";
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const html = String(reader.result ?? "");
+      source.value = html;
+      render(html, file.name);
+      emitFeed("system", `Sandbox preview opened ${file.name}.`);
+    };
+    reader.readAsText(file);
+  });
+
+  window.addEventListener("je-preview", (e) => {
+    const body = (e as CustomEvent<string>).detail ?? "";
+    if (!body) return;
+    const html = extractHtml(body);
+    source.value = html;
+    render(html, "Artifact preview");
+    refreshPicker();
+    switchView("preview");
+  });
+  window.addEventListener("je-artifacts-changed", refreshPicker);
+
+  refreshPicker();
+  source.value = SAMPLE_APP;
+  render(SAMPLE_APP, "Sample app — Mission Control");
+}
