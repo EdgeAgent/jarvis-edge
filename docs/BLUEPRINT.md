@@ -50,6 +50,29 @@ Think of Jarvis like a person with five parts:
 
 ---
 
+## ⭐ Your quest map — the whole build on one page
+
+Eight steps. Tick them off as you go — with a pen if you printed this.
+Most people finish in about 30 minutes.
+
+- [ ] **Step 1** — Install Ollama, the brain-keeper *(3 minutes)*
+- [ ] **Step 2** — Download a brain (a model) *(5–10 minutes, mostly waiting)*
+- [ ] **Step 3** — Let the browser talk to the brain *(2 minutes)*
+- [ ] **Step 4** — Get the console and switch it on *(5 minutes)*
+- [ ] **Step 5** — Say hello: your first commands *(5 minutes)*
+- [ ] **Step 6** — Give Jarvis a voice *(5 minutes)*
+- [ ] **Step 7** — Feed the second brain *(5 minutes)*
+- [ ] **Step 8** — Run the approval queue *(3 minutes)*
+- [ ] **Bonus** — Make it beautiful (Chapter 12) and Level up (Chapter 13)
+
+**How the checklists work:** every step ends with a **✅ Checkpoint**
+(what you should see) and a **Tick them off** list (every little action,
+in order). If a box won't tick, the fix is in that step's checkpoint — or
+in Chapter 14, *When stuff breaks*.
+
+
+---
+
 ## 3. Before you start — the shopping list (everything is free)
 
 You need:
@@ -88,6 +111,12 @@ when:
 **✅ Checkpoint:** You installed it and saw no errors. That's it for now —
 the next step gives it an actual brain.
 
+**Tick them off:**
+
+- [ ] Went to ollama.com and downloaded the installer for my system
+- [ ] Installed it like a normal app, start to finish
+- [ ] Ollama is running (tray icon on Windows / menu bar on Mac)
+
 ---
 
 ## 5. STEP 2 — Download a brain (a model)
@@ -120,6 +149,14 @@ Jarvis lets you swap brains with one tap — collecting two or three is normal.
 
 **✅ Checkpoint:** The download finished and the Terminal says `success`.
 
+**Tick them off:**
+
+- [ ] Opened the Terminal
+- [ ] Pasted `ollama pull llama3.1:8b` and pressed Enter
+- [ ] The progress bar reached 100%
+- [ ] The Terminal said `success`
+- [ ] (Optional) Pulled a second brain to compare later
+
 ---
 
 ## 6. STEP 3 — Let the browser talk to the brain
@@ -146,6 +183,12 @@ the program says it's okay. So we start Ollama in "visitors welcome" mode:
 **✅ Checkpoint:** The Terminal shows lines ending in `Listening on
 127.0.0.1:11434`. That string of numbers is Ollama's home address on your
 machine. Remember it — the console asks for it, and it's already filled in.
+
+**Tick them off:**
+
+- [ ] Pasted the `OLLAMA_ORIGINS` line for my system and pressed Enter
+- [ ] The Terminal shows `Listening on 127.0.0.1:11434`
+- [ ] I left that Terminal window OPEN (closing it closes the front door)
 
 > **Safety note in plain words:** `OLLAMA_ORIGINS="*"` only matters on your
 > own computer, for programs *already on your computer*. It does not put
@@ -195,6 +238,17 @@ git clone https://github.com/EdgeAgent/jarvis-edge.git
 **✅ Checkpoint:** You see the reactor, the panels, and Jarvis's hello
 message. **You just built a Jarvis.** Everything after this is learning to
 use it and making it yours.
+
+**Tick them off:**
+
+- [ ] Downloaded the repo ZIP (or cloned it) and unzipped it
+- [ ] Installed Node.js LTS from nodejs.org
+- [ ] Opened a Terminal inside the `console` folder
+- [ ] Ran `npm install` — it finished without red errors
+- [ ] Ran `npm run dev`
+- [ ] Opened http://127.0.0.1:5173 in Chrome or Edge
+- [ ] I can see the reactor, the panels, and Jarvis's hello message
+- [ ] The pill (top right) tells me whether Ollama is ONLINE or OFFLINE
 
 > **The top-right pill tells the truth.** Green `OLLAMA · ONLINE` means the
 > brain is connected. Red `OLLAMA · OFFLINE` means Step 3's Terminal got
@@ -247,6 +301,13 @@ try the same question on two and compare.
 **✅ Checkpoint:** `help` worked, and one real question got an answer from
 your local model. No account. No bill. That answer cost you $0.
 
+**Tick them off:**
+
+- [ ] Typed `help` and read the playbook
+- [ ] Asked one real question and watched the answer stream in
+- [ ] Swapped brains — `switch to <model>`, or tapped one in the left panel
+- [ ] Ran `status` and understood every line of the report
+
 ---
 
 ## 9. STEP 6 — Give Jarvis a voice
@@ -269,6 +330,15 @@ violet = thinking · teal = speaking. After a day it reads like a face.
 **✅ Checkpoint:** You had a spoken conversation with an AI that lives in
 your house and answers to nobody else. The movie prop is real, and it's
 yours.
+
+**Tick them off:**
+
+- [ ] Clicked TALK TO JARVIS and allowed the microphone
+- [ ] Saw the button turn gold and say LISTENING
+- [ ] Said a command out loud — and Jarvis did it
+- [ ] Jarvis spoke the answer back to me
+- [ ] Picked a voice I like in the Voice dropdown
+- [ ] (Optional) Ticked the "Jarvis" wake word and tried it hands-free
 
 > **Honest note about voices:** the talking (mouth) is 100% your computer.
 > The listening (ears) in Chrome uses Google's speech service inside the
@@ -320,6 +390,13 @@ files turn a generic AI into *your* assistant.
 **✅ Checkpoint:** The Second Brain panel shows your documents, and Jarvis
 answered one question using them.
 
+**Tick them off:**
+
+- [ ] Pinned a note with `note …` and saw it filed
+- [ ] Clicked **Add files** and loaded at least one real document
+- [ ] The Second Brain worker card flipped to LOADED
+- [ ] Asked a question my file answers — and Jarvis answered from *my* material
+
 ---
 
 ## 11. STEP 8 — The approval queue (the Golden Rule, in action)
@@ -356,6 +433,29 @@ first. You stay the boss of everything that leaves your desk.
 **✅ Checkpoint:** You drafted, reviewed, and approved (or dismissed) a
 piece of work without anything being sent. Blueprint complete — Jarvis is
 built. The rest of this guide is making it *beautiful* and *stronger*.
+
+**Tick them off:**
+
+- [ ] Drafted an email with `draft email to … about …`
+- [ ] Saw it land in the Approval Queue, stamped AWAITING APPROVAL
+- [ ] Actually read the draft before deciding (boss habit #1)
+- [ ] Approved it or dismissed it — my call, nobody else's
+
+### 🎓 The final check — is your Jarvis *really* done?
+
+- [ ] Ollama is installed and a model is downloaded (run `ollama list` to see it)
+- [ ] The console opens and the pill says OLLAMA · ONLINE
+- [ ] I can switch between two models
+- [ ] Jarvis hears me *and* talks back
+- [ ] The wake word works while the tab is open
+- [ ] My second brain holds at least one note and one file
+- [ ] Jarvis answered a question using my own material
+- [ ] A draft sat in the queue until **I** decided its fate
+- [ ] I know the fix for the red OFFLINE pill (Chapter 14)
+- [ ] I know the golden rule by heart: **the human approves**
+
+Every box ticked? Then you didn't just read about AI — you *own* one.
+
 
 ---
 
