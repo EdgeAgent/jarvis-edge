@@ -118,3 +118,19 @@ It also ships as a **desktop app** (see desktop/): Electron shell, one-click
 installers via GitHub Actions, and a **Windows tray icon** — close the
 window and Jarvis stays on duty by the Wi-Fi/volume icons.
 
+
+## ⚡ Console v2.2 — approval that executes · sandbox preview · motion
+
+**Approve & Execute.** The approval gate is a trigger, not a vault. Every queue item shows the route it will take *before* you tap; hit **Approve & Execute** and it fires:
+
+- **Execution endpoint set** (your n8n / Make / GoHighLevel / Hermes webhook): the item POSTs there as JSON (`queue.approved` — kind, title, body, timestamp) and **your stack does the sending** with your credentials. Jarvis never holds a mail password or API key.
+- **No endpoint:** email drafts open composed in your own mail app, reminders fire a system notification, everything else saves to disk as a file.
+- Outcomes are reported honestly — `✓ EXECUTED` with the delivery detail, or `✗ FAILED` with the reason and a re-run button. Nothing claims a send that didn't happen.
+
+![An approved email draft, executed to a local endpoint](docs/assets/steps/step-16-execution.png)
+
+**Sandbox Preview.** A dedicated view renders apps and HTML artifacts in a genuinely isolated frame (`sandbox="allow-scripts"`, opaque origin): previewed code runs its own scripts and cannot touch the console, your files, or your data. Paste HTML, open a file, load the sample app, or send any HTML artifact from Artifacts with one click.
+
+![The Sandbox Preview running a sample app](docs/assets/steps/step-17-preview.png)
+
+**Motion.** A tasteful anime.js layer (MIT) — views settle in, feed entries slide, executed items pulse. It respects `prefers-reduced-motion`, lazy-loads, and the console works identically if it never loads.
