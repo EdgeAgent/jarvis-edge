@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JARVIS-EDGE — Executive Command Center</title>
+    <meta name="description" content="Local-first Jarvis command center: Ollama models, voice control, a second brain, and an approval-gated worker queue. Zero paid AI APIs." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-a" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-b" aria-hidden="true"></div>
+
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2" opacity="0.45"/>
+            <circle cx="32" cy="32" r="21" fill="none" stroke="currentColor" stroke-width="3"/>
+            <circle cx="32" cy="32" r="10" fill="currentColor"/>
+          </svg>
+          <div class="brand-text">
+            <strong>JARVIS<span class="brand-dash">—</span>EDGE</strong>
+            <small>EXECUTIVE COMMAND CENTER</small>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <span class="pill" id="conn-pill" data-state="unknown"><i class="dot"></i><span id="conn-text">OLLAMA · CHECKING</span></span>
+          <div class="clockbox">
+            <span id="clock">--:--:--</span>
+            <small id="date-line">—</small>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="rail rail-left">
+          <section class="panel" aria-labelledby="models-h">
+            <div class="panel-head">
+              <h2 id="models-h">Local Models</h2>
+              <button class="mini-btn" id="btn-refresh-models" type="button">Refresh</button>
+            </div>
+            <p class="panel-sub" id="model-status">Looking for Ollama on this machine…</p>
+            <ul class="model-list" id="model-list"></ul>
+            <label class="field">
+              <span>Ollama endpoint</span>
+              <input id="ollama-url" type="text" spellcheck="false" value="http://localhost:11434" />
+            </label>
+            <p class="hint">Models run 100% locally. Switching is instant — no API keys, no subscriptions.</p>
+          </section>
+
+          <section class="panel" aria-labelledby="brain-h">
+            <div class="panel-head">
+              <h2 id="brain-h">Second Brain</h2>
+              <button class="mini-btn" id="btn-brain-add" type="button">Add files</button>
+            </div>
+            <p class="panel-sub" id="brain-meta">No documents loaded.</p>
+            <ul class="brain-list" id="brain-list"></ul>
+            <input id="brain-file-input" type="file" accept=".md,.txt,.json,.csv,.log" multiple hidden />
+            <p class="hint">Drop in notes, docs and exports. Jarvis retrieves from them when you ask — files never leave this device.</p>
+          </section>
+        </aside>
+
+        <section class="stage">
+          <div class="reactor-wrap">
+            <canvas id="reactor" width="520" height="520" aria-label="Reactor core visual"></canvas>
+            <div class="reactor-scan" aria-hidden="true"></div>
+            <div class="core-readout">
+              <span id="core-state">STANDBY</span>
+              <small id="core-model">no model selected</small>
+            </div>
+          </div>
+
+          <div class="voice-row">
+            <button class="talk-btn" id="btn-talk" type="button">
+              <span class="talk-ring" aria-hidden="true"></span>
+              <span id="talk-label">TALK TO JARVIS</span>
+            </button>
+            <label class="field voice-field">
+              <span>Voice</span>
+              <select id="voice-select"></select>
+            </label>
+            <label class="wake-toggle">
+              <input type="checkbox" id="wake-toggle" />
+              <span>Wake word “Jarvis”</span>
+            </label>
+          </div>
+
+          <div class="transcript" id="transcript" aria-live="polite"></div>
+
+          <form class="cmd" id="cmd-form">
+            <input id="cmd-input" type="text" autocomplete="off" spellcheck="false"
+              placeholder="Give Jarvis a command — try “draft an email to Sarah about the lead pack” or ask anything…" />
+            <button class="cmd-send" type="submit">Send</button>
+          </form>
+          <p class="cmd-hint">Commands: <b>help</b> · <b>status</b> · <b>switch to &lt;model&gt;</b> · <b>draft email to … about …</b> · <b>note …</b> · everything else goes to the active model.</p>
+        </section>
+
+        <aside class="rail rail-right">
+          <section class="panel" aria-labelledby="workers-h">
+            <div class="panel-head"><h2 id="workers-h">Worker Swarm</h2></div>
+            <ul class="worker-list" id="worker-list"></ul>
+          </section>
+
+          <section class="panel" aria-labelledby="queue-h">
+            <div class="panel-head">
+              <h2 id="queue-h">Approval Queue</h2>
+              <span class="count-badge" id="queue-count">0</span>
+            </div>
+            <ul class="queue-list" id="queue-list"></ul>
+            <p class="hint">Nothing is ever sent or executed without your approval. Approved items stay local until you act on them.</p>
+          </section>
+
+          <section class="panel" aria-labelledby="vitals-h">
+            <div class="panel-head"><h2 id="vitals-h">Vitals</h2></div>
+            <div class="vitals">
+              <div class="vital"><span>Session</span><strong id="v-uptime">00:00</strong></div>
+              <div class="vital"><span>Last reply</span><strong id="v-latency">—</strong></div>
+              <div class="vital"><span>Exchanges</span><strong id="v-messages">0</strong></div>
+              <div class="vital"><span>JS heap</span><strong id="v-heap">—</strong></div>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="footbar">
+        <span>Local-first by design — models, memory and voice run on your machine.</span>
+        <span class="foot-right">JARVIS-EDGE · Reactor Core v1.1 · Zero paid AI APIs</span>
+      </footer>
+    </div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
