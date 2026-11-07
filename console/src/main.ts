@@ -421,8 +421,10 @@ brainFileInput.addEventListener("change", () => {
   }
 });
 
+const BRAIN_STOPWORDS = new Set(["what", "are", "the", "and", "for", "you", "your", "that", "this", "with", "from", "have", "does", "did", "can", "how", "why", "when", "who", "was", "were", "will", "would", "about", "into", "please", "tell", "give", "show"]);
+
 function retrieveBrain(query: string): string[] {
-  const words = Array.from(new Set(query.toLowerCase().match(/[a-z0-9]{3,}/g) ?? []));
+  const words = Array.from(new Set(query.toLowerCase().match(/[a-z0-9]{3,}/g) ?? [])).filter((w) => !BRAIN_STOPWORDS.has(w));
   if (!words.length || !brainDocs.length) return [];
   const scored: Array<{ chunk: string; doc: string; score: number }> = [];
   for (const doc of brainDocs) {
