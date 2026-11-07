@@ -3,332 +3,340 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jarvis-Edge — Your AI. Your machine. No cloud bill.</title>
-<meta name="description" content="Jarvis-Edge is a local-first AI command center: a 12-agent dev team, a second brain that answers from your own files, voice control, and an approval gate on everything. Runs on Ollama. Zero paid AI APIs." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%2339d5e8' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23e8b34b'/%3E%3C/svg%3E" />
+<title>Jarvis-Edge — the AI that lives on your computer</title>
+<meta name="description" content="Jarvis-Edge is a local AI command center: a 12-agent team, a second brain over your own files, voice control, and an approval gate on everything outbound. Runs on Ollama. $8.99 one time; updates free." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%236fd8e7' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23e9e4d8'/%3E%3C/svg%3E" />
 <style>
   :root{
-    --bg:#03060d; --bg2:#050b16; --panel:rgba(10,22,40,.72); --edge:rgba(94,205,240,.22); --edge2:rgba(94,205,240,.45);
-    --ink:#eaf6ff; --muted:#94b8d6; --cyan:#39d5e8; --cyan-hot:#7ceeff; --gold:#e8b34b; --gold-hot:#ffd97a; --teal:#2ee6a8;
-    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --bg:#07090c; --panel:#0b0e13; --line:#1d232c; --line2:#2a323e;
+    --ink:#ece7db; --dim:#9aa3ad; --faint:#5d6672;
+    --cyan:#6fd8e7; --cyan-dim:#3d7f8c; --bone:#e9e4d8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
     --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;z-index:-2;
-    background:
-      radial-gradient(1100px 620px at 50% -10%, rgba(26,84,140,.5), transparent 65%),
-      radial-gradient(800px 500px at 88% 30%, rgba(232,179,75,.07), transparent 60%),
-      radial-gradient(900px 700px at 8% 75%, rgba(46,230,168,.05), transparent 60%),
-      var(--bg);}
-  body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.5;pointer-events:none;
-    background-image:linear-gradient(rgba(94,205,240,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(94,205,240,.05) 1px,transparent 1px);
-    background-size:56px 56px;
-    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);
-            mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);}
-  a{color:var(--cyan-hot)}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px}
   .mono{font-family:var(--mono)}
 
-  /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(3,6,13,.72);border-bottom:1px solid rgba(94,205,240,.12)}
-  .nav-in{display:flex;align-items:center;gap:26px;height:64px}
-  .brand{display:flex;align-items:center;gap:12px;font-family:var(--mono);letter-spacing:.34em;font-weight:700;font-size:15px}
-  .brand .dash{color:var(--gold)}
-  .brand small{display:block;letter-spacing:.42em;font-size:8px;color:var(--muted);font-weight:400}
-  .brand-ring{width:34px;height:34px;border-radius:50%;border:2px solid var(--cyan);position:relative;box-shadow:0 0 16px rgba(57,213,232,.55),inset 0 0 10px rgba(57,213,232,.5);flex:none}
-  .brand-ring::after{content:"";position:absolute;inset:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
-  .nav-links{margin-left:auto;display:flex;gap:26px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
-  .nav-links a{color:var(--muted);text-decoration:none}
-  .nav-links a:hover{color:var(--cyan-hot)}
-  .nav-cta{margin-left:8px}
-  @media(max-width:820px){.nav-links{display:none}}
+  /* masthead */
+  header.top{border-bottom:1px solid var(--line)}
+  .top-in{display:flex;align-items:baseline;gap:28px;padding:22px 0 20px}
+  .wordmark{font-family:var(--mono);font-size:15px;letter-spacing:.3em;color:var(--bone)}
+  .wordmark span{color:var(--faint)}
+  .top nav{margin-left:auto;display:flex;gap:24px;font-size:13px}
+  .top nav a{color:var(--dim)}
+  .top nav a:hover{color:var(--ink);text-decoration:none}
+  .top .buy{color:var(--bone);border:1px solid var(--line2);padding:6px 14px;border-radius:999px;font-size:13px}
+  .top .buy:hover{border-color:var(--cyan-dim);text-decoration:none}
+  @media(max-width:760px){.top nav a:not(.buy){display:none}}
 
-  /* ---------- buttons ---------- */
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid transparent;transition:transform .15s ease, box-shadow .15s ease}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(180deg,var(--gold-hot),var(--gold));color:#231703;box-shadow:0 10px 34px rgba(232,179,75,.35)}
-  .btn-ghost{background:rgba(10,22,40,.6);color:var(--ink);border-color:var(--edge2)}
-  .btn-ghost:hover{border-color:var(--cyan)}
-  .btn-small{padding:9px 18px;font-size:13px;border-radius:10px}
+  /* hero */
+  .hero{padding:88px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:56px}}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.26em;color:var(--faint);text-transform:uppercase}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,5.6vw,62px);line-height:1.12;letter-spacing:-.01em;margin:22px 0 24px;color:var(--bone)}
+  .hero p.lede{font-size:18px;color:var(--dim);max-width:34em}
+  .hero p.lede b{color:var(--ink);font-weight:600}
+  .actions{display:flex;gap:14px;align-items:center;margin-top:34px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--bone);color:#0a0c0f;font-weight:600;font-size:15px;padding:13px 24px;border-radius:10px}
+  .btn:hover{text-decoration:none;background:#fff}
+  .btn-line{display:inline-block;border:1px solid var(--line2);color:var(--ink);font-size:15px;padding:12px 22px;border-radius:10px}
+  .btn-line:hover{text-decoration:none;border-color:var(--cyan-dim)}
+  .fineprint{font-size:13px;color:var(--faint);margin-top:16px}
 
-  /* ---------- hero ---------- */
-  .hero{padding:96px 0 70px;text-align:center;position:relative}
-  .pill{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--teal);border:1px solid rgba(46,230,168,.4);padding:7px 14px;border-radius:999px;background:rgba(46,230,168,.06);text-transform:uppercase}
-  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pulse 2.2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .reactor{width:190px;height:190px;margin:44px auto 8px;position:relative}
-  .reactor .ring{position:absolute;border-radius:50%;border:2px solid transparent}
-  .r1{inset:0;border-top-color:var(--cyan);border-right-color:rgba(57,213,232,.35);animation:spin 14s linear infinite;box-shadow:0 0 44px rgba(57,213,232,.14), inset 0 0 34px rgba(57,213,232,.08)}
-  .r2{inset:24px;border-bottom-color:var(--gold);border-left-color:rgba(232,179,75,.4);animation:spinr 9s linear infinite}
-  .r3{inset:48px;border-top-color:rgba(124,238,255,.75);animation:spin 6s linear infinite}
-  .core{position:absolute;inset:70px;border-radius:50%;background:radial-gradient(circle at 42% 38%, #c9fbff, var(--cyan) 55%, #0e5d75);box-shadow:0 0 54px rgba(57,213,232,.75), 0 0 120px rgba(57,213,232,.3);animation:breathe 4.5s ease-in-out infinite}
+  /* reactor — restrained, line-drawn */
+  .reactorbox{justify-self:center;text-align:center}
+  .reactor{width:230px;height:230px;position:relative;margin:0 auto}
+  .reactor .ring{position:absolute;border-radius:50%}
+  .rr-outer{inset:0;border:1px solid var(--line2)}
+  .rr-ticks{inset:0;background:repeating-conic-gradient(from 0deg, rgba(111,216,231,.55) 0deg 1deg, transparent 1deg 12deg);-webkit-mask-image:radial-gradient(circle, transparent 66%, #000 67%, #000 72%, transparent 73%);mask-image:radial-gradient(circle, transparent 66%, #000 67%, #000 72%, transparent 73%);animation:spin 90s linear infinite}
+  .rr-arc{inset:22px;border:1px solid transparent;border-top-color:var(--cyan);border-right-color:rgba(111,216,231,.25);animation:spin 16s linear infinite}
+  .rr-arc2{inset:44px;border:1px solid transparent;border-bottom-color:rgba(233,228,216,.55);animation:spinr 11s linear infinite}
+  .rr-core{position:absolute;inset:86px;border-radius:50%;background:radial-gradient(circle at 42% 38%, #eafcff, var(--cyan) 58%, #2b6d7c);box-shadow:0 0 46px rgba(111,216,231,.35);animation:breathe 5s ease-in-out infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes spinr{to{transform:rotate(-360deg)}}
-  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-  h1{font-size:clamp(42px,7vw,76px);line-height:1.04;font-weight:800;letter-spacing:-.02em;max-width:900px;margin:26px auto 0}
-  h1 .grad{background:linear-gradient(92deg,var(--cyan-hot) 10%,var(--cyan) 40%,var(--gold-hot) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--muted);font-size:clamp(16px,2.2vw,20px);max-width:720px;margin:22px auto 0}
-  .sub b{color:var(--ink)}
-  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
-  .micro{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted);margin-top:16px;text-transform:uppercase}
-  .stats{display:flex;gap:0;justify-content:center;flex-wrap:wrap;margin:58px auto 0;max-width:880px;border:1px solid var(--edge);border-radius:16px;background:var(--panel);overflow:hidden}
-  .stat{flex:1 1 160px;padding:20px 14px;border-right:1px solid rgba(94,205,240,.12)}
-  .stat:last-child{border-right:0}
-  .stat b{display:block;font-size:26px;font-weight:800}
-  .stat span{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
-  .stat b em{font-style:normal;color:var(--gold-hot)}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+  .reactorbox figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--faint);margin-top:20px;text-transform:uppercase;line-height:2}
+  .reactorbox figcaption b{color:var(--cyan);font-weight:500}
 
-  /* ---------- sections ---------- */
-  section{padding:84px 0 8px}
-  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--cyan);text-transform:uppercase;text-align:center}
-  h2{font-size:clamp(30px,4.4vw,44px);font-weight:800;letter-spacing:-.015em;text-align:center;margin:14px auto 0;max-width:760px;line-height:1.15}
-  .lead{color:var(--muted);text-align:center;max-width:680px;margin:16px auto 0;font-size:17px}
-  .shot{margin:44px auto 0;max-width:1020px;border:1px solid var(--edge2);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 60px rgba(57,213,232,.07);background:#050b16}
-  .shot img{display:block;width:100%;height:auto}
-  .shot figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);padding:13px 18px;border-top:1px solid rgba(94,205,240,.14);background:rgba(5,11,22,.9)}
-  .shot figcaption b{color:var(--gold-hot);font-weight:600}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
-  @media(max-width:900px){.grid3,.grid2{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:26px;transition:border-color .15s ease, transform .15s ease}
-  .card:hover{border-color:var(--edge2);transform:translateY(-3px)}
-  .card .ic{font-size:26px}
-  .card h3{font-size:18px;margin:12px 0 8px}
-  .card p{color:var(--muted);font-size:14.5px}
-  .card p b{color:var(--ink)}
-  .team{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:44px}
-  @media(max-width:900px){.team{grid-template-columns:repeat(2,1fr)}}
-  .agent{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:18px 16px;text-align:left}
-  .agent .ic{font-size:22px}
-  .agent h4{font-size:14.5px;margin:8px 0 4px}
-  .agent p{color:var(--muted);font-size:12.5px;line-height:1.5}
-  .agent.lead-agent{border-color:rgba(232,179,75,.55);background:linear-gradient(180deg,rgba(232,179,75,.1),rgba(10,22,40,.72))}
+  /* facts row */
+  .facts{display:flex;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:64px}
+  .fact{flex:1;padding:20px 18px 18px;border-right:1px solid var(--line)}
+  .fact:last-child{border-right:0}
+  .fact b{display:block;font-family:var(--serif);font-size:26px;font-weight:500;color:var(--bone)}
+  .fact span{font-size:12px;color:var(--faint);letter-spacing:.04em}
+  @media(max-width:760px){.facts{flex-wrap:wrap}.fact{flex:1 1 40%;border-bottom:1px solid var(--line)}}
 
-  /* ---------- steps / code ---------- */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  @media(max-width:900px){.steps{grid-template-columns:1fr}}
-  .step{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:26px}
-  .step .n{font-family:var(--mono);color:var(--gold);font-size:12px;letter-spacing:.24em}
-  .step h3{margin:10px 0 8px;font-size:18px}
-  .step p{color:var(--muted);font-size:14.5px}
-  code.cmd{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#02050b;border:1px solid rgba(94,205,240,.25);border-radius:10px;padding:11px 13px;font-family:var(--mono);font-size:12.5px;color:var(--cyan-hot);margin-top:14px;overflow-x:auto;white-space:nowrap}
-  code.cmd button{flex:none;background:rgba(57,213,232,.12);color:var(--cyan-hot);border:1px solid rgba(94,205,240,.35);border-radius:7px;font-family:var(--mono);font-size:10px;padding:5px 9px;cursor:pointer;letter-spacing:.08em}
-  code.cmd button:hover{background:rgba(57,213,232,.25)}
+  /* sections */
+  section{padding:92px 0 0}
+  .sec-head{max-width:640px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(29px,3.8vw,40px);line-height:1.2;color:var(--bone);margin:16px 0 18px}
+  .sec-head p{color:var(--dim);font-size:16.5px}
+  .sec-head p b{color:var(--ink);font-weight:600}
 
-  /* ---------- download ---------- */
-  .dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  @media(max-width:900px){.dl-grid{grid-template-columns:1fr}}
-  .dl{background:var(--panel);border:1px solid var(--edge);border-radius:18px;padding:30px 26px;text-align:center}
-  .dl.hot{border-color:rgba(232,179,75,.6);background:linear-gradient(180deg,rgba(232,179,75,.09),rgba(10,22,40,.72))}
-  .dl .os{font-size:34px}
-  .dl h3{margin:10px 0 6px;font-size:19px}
-  .dl p{color:var(--muted);font-size:13.5px;min-height:62px}
-  .dl .btn{width:100%;justify-content:center;margin-top:8px}
-  .dl .fine{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em;margin-top:12px;min-height:0}
+  /* framed screenshots */
+  figure.frame{margin-top:44px;border:1px solid var(--line2);border-radius:6px;background:var(--panel);padding:10px}
+  figure.frame img{display:block;width:100%;height:auto;border-radius:3px}
+  figure.frame figcaption{display:flex;gap:14px;align-items:baseline;padding:14px 6px 6px;font-size:13.5px;color:var(--dim)}
+  figure.frame figcaption .tag{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--cyan);white-space:nowrap}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:820px){.duo{grid-template-columns:1fr}}
+  .duo figure.frame{margin-top:44px}
 
-  /* ---------- faq / footer ---------- */
-  .faq{max-width:780px;margin:40px auto 0}
-  details{border:1px solid var(--edge);border-radius:12px;background:var(--panel);padding:18px 20px;margin-bottom:12px}
-  summary{cursor:pointer;font-weight:700;font-size:15.5px}
-  details p{color:var(--muted);font-size:14.5px;margin-top:10px}
-  .road{margin-top:44px;border:1px solid rgba(232,179,75,.4);border-radius:18px;padding:30px;background:linear-gradient(180deg,rgba(232,179,75,.07),rgba(10,22,40,.6))}
-  .road h3{font-size:20px;text-align:center}
-  .road p{color:var(--muted);text-align:center;max-width:720px;margin:10px auto 0;font-size:15px}
-  footer{margin-top:96px;border-top:1px solid rgba(94,205,240,.14);padding:34px 0 44px;color:var(--muted);font-size:13px}
-  .foot-in{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.on{opacity:1;transform:none}
+  /* roster */
+  .roster{margin-top:40px;border-top:1px solid var(--line)}
+  .member{display:grid;grid-template-columns:44px 210px 1fr;gap:18px;padding:15px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  @media(max-width:700px){.member{grid-template-columns:34px 1fr}.member p{grid-column:2}}
+  .member .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .member h3{font-size:15.5px;font-weight:600;color:var(--ink)}
+  .member h3 span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--faint);font-weight:400;margin-top:3px;text-transform:uppercase}
+  .member p{color:var(--dim);font-size:14.5px}
+  .member.lead h3{color:var(--bone)}
+
+  /* plain numbered install */
+  .steps{margin-top:36px;border-top:1px solid var(--line)}
+  .step{display:grid;grid-template-columns:44px 240px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
+  @media(max-width:700px){.step{grid-template-columns:34px 1fr}.step .cmd{grid-column:2}}
+  .step .no{font-family:var(--mono);font-size:11px;color:var(--faint);padding-top:4px}
+  .step h3{font-size:16px;font-weight:600}
+  .step p{color:var(--dim);font-size:14.5px;margin-top:4px}
+  .step .cmd{font-family:var(--mono);font-size:13px;color:var(--cyan);background:#05070a;border:1px solid var(--line);border-radius:8px;padding:11px 14px;display:flex;justify-content:space-between;gap:12px;align-items:center;overflow-x:auto;white-space:nowrap}
+  .step .cmd button{background:none;border:1px solid var(--line2);color:var(--dim);border-radius:6px;font-family:var(--mono);font-size:10px;padding:4px 8px;cursor:pointer;flex:none}
+  .step .cmd button:hover{color:var(--ink);border-color:var(--cyan-dim)}
+
+  /* price */
+  .price{margin-top:40px;border:1px solid var(--line2);border-radius:14px;padding:44px;display:grid;grid-template-columns:220px 1fr;gap:44px;background:linear-gradient(180deg,#0c1016,#0a0d11)}
+  @media(max-width:760px){.price{grid-template-columns:1fr;padding:32px}}
+  .price .amount{font-family:var(--serif);font-size:74px;line-height:1;color:var(--bone)}
+  .price .per{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase;margin-top:12px;line-height:2}
+  .price ul{list-style:none;color:var(--dim);font-size:15px}
+  .price li{padding:7px 0;border-bottom:1px solid var(--line)}
+  .price li:last-child{border-bottom:0}
+  .price li b{color:var(--ink);font-weight:600}
+  .price .note{grid-column:1/-1;font-size:13.5px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px}
+
+  /* downloads */
+  .dls{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.dls{grid-template-columns:1fr}}
+  .dl{border:1px solid var(--line);border-radius:12px;padding:26px}
+  .dl h3{font-size:16px;margin-bottom:8px}
+  .dl p{color:var(--dim);font-size:14px;min-height:66px}
+  .dl a.dlbtn{display:inline-block;margin-top:14px;border:1px solid var(--line2);color:var(--ink);padding:10px 18px;border-radius:9px;font-size:14px;font-weight:600}
+  .dl a.dlbtn:hover{border-color:var(--cyan-dim);text-decoration:none}
+  .dl .os{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase}
+
+  /* faq */
+  .faq{margin-top:36px;border-top:1px solid var(--line)}
+  .qa{padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:280px 1fr;gap:24px}
+  @media(max-width:700px){.qa{grid-template-columns:1fr;gap:8px}}
+  .qa h3{font-size:15.5px;font-weight:600}
+  .qa p{color:var(--dim);font-size:15px}
+
+  footer{margin-top:100px;border-top:1px solid var(--line);padding:30px 0 40px}
+  .foot{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between;color:var(--faint);font-size:13px}
   @media (prefers-reduced-motion: reduce){
-    .r1,.r2,.r3,.core,.pill .dot{animation:none}
-    .reveal{opacity:1;transform:none;transition:none}
+    .rr-ticks,.rr-arc,.rr-arc2,.rr-core{animation:none}
     html{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap nav-in">
-    <div class="brand">
-      <div class="brand-ring"></div>
-      <div>JARVIS<span class="dash">—</span>EDGE<small>EXECUTIVE COMMAND CENTER</small></div>
-    </div>
-    <div class="nav-links">
-      <a href="#team">The Team</a><a href="#brain">The Brain</a><a href="#proof">Proof</a><a href="#install">Install</a><a href="#faq">FAQ</a>
-    </div>
-    <a class="btn btn-gold btn-small nav-cta" href="#download">Download free</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="pill"><span class="dot"></span> Local-first · Zero paid AI APIs</span>
-    <div class="reactor" aria-hidden="true">
-      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="core"></div>
-    </div>
-    <h1>Your AI. Your machine.<br /><span class="grad">No cloud bill.</span></h1>
-    <p class="sub">Jarvis-Edge is a command center that lives on <b>your</b> computer — a 12-agent dev team, a second brain that answers from <b>your own files</b>, voice control, and an approval gate on anything that leaves the machine. The AI companies rent you a brain. <b>This one is yours.</b></p>
-    <div class="cta-row">
-      <a class="btn btn-gold" href="#download">⬇ Download Jarvis-Edge</a>
-      <a class="btn btn-ghost" href="https://github.com/EdgeAgent/jarvis-edge">View the source</a>
-    </div>
-    <p class="micro">Free · Open source (MIT) · Runs on Ollama · Windows tray app included</p>
-    <div class="stats">
-      <div class="stat"><b>12</b><span>Specialist agents</span></div>
-      <div class="stat"><b><em>$0</em></b><span>Paid AI APIs</span></div>
-      <div class="stat"><b>100%</b><span>Local processing</span></div>
-      <div class="stat"><b>7 / 7</b><span>Sandboxes proven live</span></div>
-      <div class="stat"><b>1-click</b><span>Tray install</span></div>
-    </div>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="wordmark">JARVIS<span>—</span>EDGE</div>
+    <nav>
+      <a href="#brain">Brain</a>
+      <a href="#team">Team</a>
+      <a href="#install">Install</a>
+      <a href="#faq">Questions</a>
+      <a class="buy" href="#price">$8.99 — own it</a>
+    </nav>
   </div>
 </header>
 
-<section id="team">
-  <div class="wrap">
-    <p class="kicker">Not a chatbot — a crew</p>
-    <h2>Give it a mission. The team goes to work.</h2>
-    <p class="lead">The Lead plans the job and hands each specialist an assignment. They work <b style="color:var(--ink)">in parallel, each in its own sandbox</b> — then the Code Reviewer attacks the result and the Reality Checker grades it before anything reaches you. If the brain is offline, the team stands down and says so. It never fakes work.</p>
-    <figure class="shot reveal">
-      <img src="assets/steps/step-10-dev-team-mission.png" alt="Dev Team mission running in parallel sandboxes" loading="lazy" />
-      <figcaption><b>REAL RUN —</b> a live mission on a small local model: 7 sandboxes, all DONE, deliverable filed to Artifacts and the approval queue.</figcaption>
-    </figure>
-    <div class="team">
-      <div class="agent lead-agent"><div class="ic">🎬</div><h4>Studio Producer — Lead</h4><p>Plans every mission, routes assignments, assembles the final deliverable.</p></div>
-      <div class="agent"><div class="ic">🔍</div><h4>Research Synthesist</h4><p>Turns raw sources into briefings with the receipts attached.</p></div>
-      <div class="agent"><div class="ic">🖥️</div><h4>Frontend Developer</h4><p>Builds the interfaces — performance budgets, real-device proof.</p></div>
-      <div class="agent"><div class="ic">🏗️</div><h4>Backend Developer</h4><p>APIs, data and reliability — failure modes designed, not discovered.</p></div>
-      <div class="agent"><div class="ic">💎</div><h4>Senior Developer</h4><p>The hard problems and the final call on architecture.</p></div>
-      <div class="agent"><div class="ic">🎨</div><h4>UI Designer</h4><p>Design systems and interfaces that feel inevitable.</p></div>
-      <div class="agent"><div class="ic">📐</div><h4>UX Architect</h4><p>Flows and cognitive load — every screen earns its place.</p></div>
-      <div class="agent"><div class="ic">✍️</div><h4>Content Creator</h4><p>Copy in your voice, built for the platform it ships on.</p></div>
-      <div class="agent"><div class="ic">🔎</div><h4>SEO Specialist</h4><p>Finds the searches that matter and closes the content gaps.</p></div>
-      <div class="agent"><div class="ic">🎯</div><h4>Outbound Strategist</h4><p>Sequences and angles — drafts only, your approval sends.</p></div>
-      <div class="agent"><div class="ic">👁️</div><h4>Code Reviewer</h4><p>Reads every diff like an adversary. Blockers are blockers.</p></div>
-      <div class="agent"><div class="ic">🧐</div><h4>Reality Checker</h4><p>Defaults to NEEDS WORK. Evidence wins, screenshots prove it.</p></div>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <p class="kicker">A local AI command center</p>
+      <h1>The AI lives on your computer now.</h1>
+      <p class="lede">Jarvis-Edge is a command center that runs entirely on your own machine — a <b>12-agent team</b> that takes on missions, a <b>second brain</b> that answers from your files, and an <b>approval gate</b> on anything that would leave the machine. No subscription. No cloud. The big AI companies rent you a brain by the month; this one you own.</p>
+      <div class="actions">
+        <a class="btn" href="#download">Download Jarvis-Edge</a>
+        <a class="btn-line" href="https://github.com/EdgeAgent/jarvis-edge">Read the source</a>
+      </div>
+      <p class="fineprint">$8.99 one time when checkout opens. Preview builds are free until then — and yours to keep.</p>
     </div>
-    <p class="lead" style="font-size:13px;margin-top:20px">Personas adapted from the open-source <a href="https://github.com/msitarzewski/agency-agents">agency-agents</a> collection (MIT) — credited in the repo.</p>
+    <figure class="reactorbox">
+      <div class="reactor" aria-hidden="true">
+        <div class="ring rr-outer"></div><div class="ring rr-ticks"></div>
+        <div class="ring rr-arc"></div><div class="ring rr-arc2"></div><div class="rr-core"></div>
+      </div>
+      <figcaption>Reactor core · <b>online</b><br />Brain · local · Cloud · none</figcaption>
+    </figure>
   </div>
-</section>
+
+  <div class="facts">
+    <div class="fact"><b>12</b><span>specialist agents on the team</span></div>
+    <div class="fact"><b>0</b><span>paid AI APIs, accounts, or logins</span></div>
+    <div class="fact"><b>100%</b><span>of processing on your hardware</span></div>
+    <div class="fact"><b>$8.99</b><span>once — every update free after</span></div>
+  </div>
+</div>
 
 <section id="brain">
   <div class="wrap">
-    <p class="kicker">The second brain</p>
-    <h2>A brain you can <span style="color:var(--gold-hot)">see thinking</span>.</h2>
-    <p class="lead">Drop in your documents and Jarvis answers from them — prices, rules, your own words, quoted back verbatim. The Brain view draws your knowledge as a living node map, Obsidian-style. Ask a question, and the documents Jarvis actually used <b style="color:var(--ink)">light up gold</b>. No mystery retrieval. No uploads — the brain never leaves your machine.</p>
-    <figure class="shot reveal">
-      <img src="assets/steps/step-15-brain-graph.png" alt="Second Brain node map with the used documents lit gold" loading="lazy" />
-      <figcaption><b>REAL SHOT —</b> after the prices question, exactly the two documents Jarvis pulled from are lit gold. The Portugal notes he didn't use stay dark.</figcaption>
+    <div class="sec-head">
+      <p class="kicker">The second brain</p>
+      <h2>Ask your own files a question.</h2>
+      <p>Load documents — prices, notes, contracts, whatever runs your day — and Jarvis answers from them, quoting the source. The Brain view draws what Jarvis knows as a node map. When an answer uses a document, <b>that document lights up</b>, so you can see exactly what an answer was built on. Everything is indexed on your disk and never uploaded.</p>
+    </div>
+    <figure class="frame">
+      <img src="assets/steps/step-15-brain-graph.png" alt="The Brain Map — a node graph of documents, ideas and goals, with the two documents used in the last answer lit gold" loading="lazy" />
+      <figcaption><span class="tag">BRAIN MAP</span><span>After a question about prices, the two documents Jarvis actually pulled from are lit. The Portugal notes he didn't use stay dark. That's the whole idea: no mystery retrieval.</span></figcaption>
     </figure>
-    <div class="grid3">
-      <div class="card"><div class="ic">📚</div><h3>Grounded answers</h3><p>Replies come from <b>your files</b>, with the source named — not from a model's imagination. If it's not in the brain, Jarvis says so.</p></div>
-      <div class="card"><div class="ic">🗺️</div><h3>The living map</h3><p>Documents, ideas and goals as nodes, linked by what they share. Drag them, click to read, <b>watch the map grow</b> as you feed it.</p></div>
-      <div class="card"><div class="ic">🔒</div><h3>Yours alone</h3><p>Indexed and stored <b>on your disk</b>, retrieved on demand, never uploaded. Delete a file and it's gone — no cloud copy, ever.</p></div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">The dev team</p>
+      <h2>A mission in, a deliverable out.</h2>
+      <p>The Lead plans the work and assigns each specialist a sandbox. They run <b>in parallel</b>, then the Code Reviewer goes through the result and the Reality Checker grades it before it reaches you. If the model is offline, the team stands down and says so — <b>it never fakes output</b>. Personas are adapted from the open-source agency-agents collection (MIT), credited in the repository.</p>
+    </div>
+    <figure class="frame">
+      <img src="assets/steps/step-10-dev-team-mission.png" alt="A Dev Team mission with seven agent sandboxes all completed" loading="lazy" />
+      <figcaption><span class="tag">A REAL RUN</span><span>Seven sandboxes, all finished, on the smallest supported model — a free 1.5B running locally. The report filed itself to Artifacts and the approval queue.</span></figcaption>
+    </figure>
+    <div class="roster">
+      <div class="member lead"><span class="no">01</span><h3>Studio Producer<span>Lead</span></h3><p>Plans every mission, routes the assignments, assembles the final deliverable.</p></div>
+      <div class="member"><span class="no">02</span><h3>Research Synthesist<span>Scout</span></h3><p>Turns raw sources into a briefing with the receipts attached.</p></div>
+      <div class="member"><span class="no">03</span><h3>Frontend Developer<span>Build</span></h3><p>Interfaces, built to a performance budget and proven on screen.</p></div>
+      <div class="member"><span class="no">04</span><h3>Backend Developer<span>Build</span></h3><p>APIs and data, with failure modes designed rather than discovered.</p></div>
+      <div class="member"><span class="no">05</span><h3>Senior Developer<span>Build</span></h3><p>The hard problems, and the final call on architecture.</p></div>
+      <div class="member"><span class="no">06</span><h3>UI Designer<span>Design</span></h3><p>Design systems and interfaces that hold together.</p></div>
+      <div class="member"><span class="no">07</span><h3>UX Architect<span>Design</span></h3><p>Flows and cognitive load. Every screen earns its place.</p></div>
+      <div class="member"><span class="no">08</span><h3>Content Creator<span>Voice</span></h3><p>Copy in your voice, shaped for where it ships.</p></div>
+      <div class="member"><span class="no">09</span><h3>SEO Specialist<span>Growth</span></h3><p>Finds the searches that matter and closes the gaps.</p></div>
+      <div class="member"><span class="no">10</span><h3>Outbound Strategist<span>Growth</span></h3><p>Sequences and angles. Drafts only — your approval is what sends.</p></div>
+      <div class="member"><span class="no">11</span><h3>Code Reviewer<span>Check</span></h3><p>Reads the work like an adversary. A blocker is a blocker.</p></div>
+      <div class="member"><span class="no">12</span><h3>Reality Checker<span>Check</span></h3><p>Defaults to “needs work.” Evidence over enthusiasm.</p></div>
     </div>
   </div>
 </section>
 
-<section id="proof">
+<section>
   <div class="wrap">
-    <p class="kicker">Proof, not promises</p>
-    <h2>Shown working. On a small free model.</h2>
-    <p class="lead">Every screenshot on this page is a real run of the shipping build — on a tiny 1.5B local model, the weakest brain Jarvis supports. Swap in a bigger model on your machine and the same system gets smarter. <b style="color:var(--ink)">The machine is the product; the model is a part.</b></p>
-    <div class="grid2">
-      <figure class="shot reveal" style="margin-top:0">
-        <img src="assets/steps/step-09-second-brain-answer.png" alt="Jarvis answering prices and the golden rule from a loaded document" loading="lazy" />
-        <figcaption><b>SECOND BRAIN —</b> asked for prices and the golden rule, Jarvis quoted the loaded document verbatim.</figcaption>
-      </figure>
-      <figure class="shot reveal" style="margin-top:0">
-        <img src="assets/desktop-app.png" alt="Jarvis-Edge running as a desktop app" loading="lazy" />
-        <figcaption><b>DESKTOP APP —</b> the full console in its own window, models ONLINE, one click from the tray.</figcaption>
-      </figure>
+    <div class="sec-head">
+      <p class="kicker">Working proof</p>
+      <h2>Shown, not promised.</h2>
+      <p>Both of these are the shipping build, running the smallest free model Jarvis supports. Put a bigger model on your machine and the same system gets smarter — <b>the machine is the product; the model is a replaceable part.</b></p>
     </div>
-    <div class="grid3">
-      <div class="card"><div class="ic">🛡️</div><h3>The approval gate</h3><p>Jarvis drafts — emails, posts, outreach — and everything waits in <b>your queue</b>. Nothing sends, posts or buys without your tap. Ever.</p></div>
-      <div class="card"><div class="ic">🎙️</div><h3>Voice, built in</h3><p>Push-to-talk and a <b>"Jarvis" wake word</b>, with a picker for the voice that answers. Local speech, no voice data leaves the room.</p></div>
-      <div class="card"><div class="ic">🧲</div><h3>Lives in your tray</h3><p>Close the window and Jarvis parks by your <b>Wi-Fi and volume icons</b> — one click to summon, live brain status in the right-click menu.</p></div>
+    <div class="duo">
+      <figure class="frame">
+        <img src="assets/steps/step-09-second-brain-answer.png" alt="Jarvis quoting a loaded document's prices and golden rule" loading="lazy" />
+        <figcaption><span class="tag">SECOND BRAIN</span><span>Asked for the prices and the golden rule, it quoted the loaded document word for word.</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="assets/desktop-app.png" alt="The Jarvis-Edge desktop app window with models online" loading="lazy" />
+        <figcaption><span class="tag">DESKTOP APP</span><span>The full console as an app. Close the window and it waits in your system tray, by the clock.</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
 <section id="install">
   <div class="wrap">
-    <p class="kicker">Up and running in minutes</p>
-    <h2>Three steps. No account. No API key.</h2>
+    <div class="sec-head">
+      <p class="kicker">Install</p>
+      <h2>Three steps, no account.</h2>
+    </div>
     <div class="steps">
-      <div class="step"><span class="n">STEP 01</span><h3>Install the brain</h3><p>Ollama is the free, open-source engine that runs AI models on your own hardware.</p><code class="cmd"><span>ollama.com/download</span><button data-copy="https://ollama.com/download">COPY</button></code></div>
-      <div class="step"><span class="n">STEP 02</span><h3>Pull a brain</h3><p>One download, yours forever. Start with the 8B — or go bigger if your machine allows.</p><code class="cmd"><span>ollama pull llama3.1:8b</span><button data-copy="ollama pull llama3.1:8b">COPY</button></code></div>
-      <div class="step"><span class="n">STEP 03</span><h3>Launch Jarvis</h3><p>Start Ollama with console access, then open Jarvis-Edge. He finds the brain himself.</p><code class="cmd"><span>OLLAMA_ORIGINS=* ollama serve</span><button data-copy="OLLAMA_ORIGINS=* ollama serve">COPY</button></code></div>
+      <div class="step"><span class="no">01</span><div><h3>Install Ollama</h3><p>The free engine that runs AI models on your hardware. ollama.com/download</p></div><div class="cmd"><span>ollama.com/download</span><button data-copy="https://ollama.com/download">COPY</button></div></div>
+      <div class="step"><span class="no">02</span><div><h3>Pull a brain</h3><p>One download, yours permanently. Start at 8B; go larger if your machine allows.</p></div><div class="cmd"><span>ollama pull llama3.1:8b</span><button data-copy="ollama pull llama3.1:8b">COPY</button></div></div>
+      <div class="step"><span class="no">03</span><div><h3>Start Ollama, open Jarvis</h3><p>Run Ollama with console access, then launch Jarvis-Edge. It finds the brain itself.</p></div><div class="cmd"><span>OLLAMA_ORIGINS=* ollama serve</span><button data-copy="OLLAMA_ORIGINS=* ollama serve">COPY</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Price</p>
+      <h2>One payment. Then it's yours.</h2>
+    </div>
+    <div class="price">
+      <div>
+        <div class="amount">$8.99</div>
+        <div class="per">One time · USD<br />No subscription<br />No tiers</div>
+      </div>
+      <ul>
+        <li><b>The console</b> — Reactor Core, voice, the “Jarvis” wake word</li>
+        <li><b>The Dev Team</b> — 12 agents, missions in parallel sandboxes</li>
+        <li><b>The Second Brain</b> — your files, the Brain Map, grounded answers</li>
+        <li><b>The desktop app</b> — system tray presence, close-to-tray</li>
+        <li><b>The approval gate</b> — nothing sends, posts, or buys without you</li>
+        <li><b>Every future update, free</b> — including the road to 95% of daily workload</li>
+      </ul>
+      <p class="note">Straight about the current state: checkout isn't open yet, so preview builds below are free — and anyone on the preview keeps everything when the $8.99 checkout opens. The models Jarvis runs (through Ollama) are free and open-weight either way. There is no version of this where you pay monthly.</p>
     </div>
   </div>
 </section>
 
 <section id="download">
   <div class="wrap">
-    <p class="kicker">Get Jarvis-Edge</p>
-    <h2>Free. Because the expensive part is already yours — your computer.</h2>
-    <p class="lead">Cloud AI charges you rent on intelligence forever. Jarvis-Edge runs on the machine you already own.</p>
-    <div class="dl-grid">
-      <div class="dl hot">
-        <div class="os">🪟</div><h3>Windows</h3>
-        <p>One-click installer with the tray app — Jarvis by your Wi-Fi icon, close-to-tray, right-click brain status.</p>
-        <a class="btn btn-gold" href="https://github.com/EdgeAgent/jarvis-edge/releases/tag/v2.0.0">Get the installer</a>
-        <p class="fine">Fresh CI builds land on the v2.0.0 release page. Unsigned preview — SmartScreen will warn; signing in progress.</p>
-      </div>
-      <div class="dl">
-        <div class="os">🐧</div><h3>Linux</h3>
-        <p>The AppImage is built and ready: download, make it executable, run. The full console + desktop shell.</p>
-        <a class="btn btn-ghost" href="https://github.com/EdgeAgent/jarvis-edge/releases/download/v2.0.0/Jarvis-Edge-2.0.0.AppImage">Download AppImage</a>
-        <p class="fine">108 MB · v2.0.0 · chmod +x, then run it.</p>
-      </div>
-      <div class="dl">
-        <div class="os">🍎</div><h3>macOS</h3>
-        <p>CI builds the macOS app alongside Windows — grab it from the same release page, or run from source below.</p>
-        <a class="btn btn-ghost" href="https://github.com/EdgeAgent/jarvis-edge/releases/tag/v2.0.0">Open the release</a>
-        <p class="fine">Apple Silicon + Intel builds via GitHub Actions.</p>
-      </div>
+    <div class="sec-head">
+      <p class="kicker">Download</p>
+      <h2>Get the current build.</h2>
+      <p>v2.0.0 — console, Dev Team, Brain Map, desktop app. Unsigned preview builds for now; your OS will warn on first run. Code signing is in progress.</p>
     </div>
-    <p class="lead" style="font-size:14px;margin-top:26px">Prefer source? <span class="mono" style="color:var(--cyan-hot)">git clone https://github.com/EdgeAgent/jarvis-edge</span> → <span class="mono" style="color:var(--cyan-hot)">cd console && npm install && npm run dev</span> — the console runs in your browser against your local Ollama.</p>
-    <div class="road">
-      <h3>The road to 95%</h3>
-      <p>Jarvis-Edge is being built to take on <b style="color:var(--ink)">95% of daily workload</b> — desktop work, online work, life admin — under one rule: he takes your direction, then finds the best, fastest, most secure route himself. The human keeps the last 5%: final sends, payments, credentials, and judgment calls. The full roadmap lives in the repo.</p>
+    <div class="dls">
+      <div class="dl"><span class="os">Windows</span><h3>One-click installer</h3><p>Built by CI on native Windows runners and attached to the v2.0.0 release, alongside the tray app.</p><a class="dlbtn" href="https://github.com/EdgeAgent/jarvis-edge/releases/tag/v2.0.0">Get the installer</a></div>
+      <div class="dl"><span class="os">Linux</span><h3>AppImage</h3><p>Built and attached to the release now. Make it executable and run it — the full console and desktop shell.</p><a class="dlbtn" href="https://github.com/EdgeAgent/jarvis-edge/releases/download/v2.0.0/Jarvis-Edge-2.0.0.AppImage">Download AppImage · 108 MB</a></div>
+      <div class="dl"><span class="os">macOS</span><h3>DMG</h3><p>Built by the same CI run for Apple Silicon and Intel, attached to the same release page.</p><a class="dlbtn" href="https://github.com/EdgeAgent/jarvis-edge/releases/tag/v2.0.0">Open the release</a></div>
     </div>
+    <p style="color:var(--faint);font-size:13.5px;margin-top:22px">From source: <span class="mono" style="color:var(--cyan)">git clone https://github.com/EdgeAgent/jarvis-edge</span>, then <span class="mono" style="color:var(--cyan)">cd console && npm install && npm run dev</span>.</p>
   </div>
 </section>
 
 <section id="faq">
   <div class="wrap">
-    <p class="kicker">Straight answers</p>
-    <h2>Before you ask</h2>
+    <div class="sec-head">
+      <p class="kicker">Questions</p>
+      <h2>Before you ask.</h2>
+    </div>
     <div class="faq">
-      <details><summary>Is it really free? What's the catch?</summary><p>No catch and no tier wall. Jarvis-Edge is MIT-licensed open source, and the models it runs (via Ollama) are free open-weight models. Your costs are your electricity. There is no account, no subscription, and nothing to cancel.</p></details>
-      <details><summary>Does my data go to the cloud?</summary><p>No. Models, documents, chat history and the brain map all live on your machine. The console talks to Ollama on localhost. Optional online workers (calendar, email) arrive in later roadmap stages — behind the same approval gate, and only if you wire them.</p></details>
-      <details><summary>What computer do I need?</summary><p>Any modern Windows, macOS or Linux machine. The 8B brain runs comfortably on 8–16 GB of RAM; bigger models reward a GPU and more memory. The console itself is light — the model does the heavy lifting.</p></details>
-      <details><summary>Can it send email or post for me?</summary><p>It drafts, you decide. Everything outbound parks in an approval queue with the full text visible. Jarvis has no send button of his own — that is a deliberate, permanent design rule.</p></details>
-      <details><summary>How is this different from ChatGPT / Copilot?</summary><p>Those are rented brains in someone else's building, billed monthly, reading what you paste. Jarvis-Edge is a crew and a command center on <i>your</i> hardware, reading <i>your</i> files, working while the subscription services are still asking you to log in.</p></details>
+      <div class="qa"><h3>Does anything leave my computer?</h3><p>No. The models, your documents, the chat history and the brain map all live on your machine; the console talks to Ollama on localhost. Later roadmap stages add optional online workers — calendar, email — behind the same approval gate, and only if you connect them.</p></div>
+      <div class="qa"><h3>What computer do I need?</h3><p>Any current Windows, Mac, or Linux machine. The 8B brain is comfortable on 8–16 GB of RAM; a GPU and more memory let you run larger models. The console itself is light.</p></div>
+      <div class="qa"><h3>Can it send email or post for me?</h3><p>It drafts. You decide. Everything outbound waits in an approval queue with the full text in front of you. Jarvis has no send button of its own — that's a permanent design rule, not a setting.</p></div>
+      <div class="qa"><h3>Why not just use ChatGPT?</h3><p>Different thing. That's a rented chatbot in someone else's building. This is a crew and a command center on your hardware, reading your files, that you pay for once. If you only need a chatbot, you don't need this.</p></div>
+      <div class="qa"><h3>What does the 95% roadmap mean?</h3><p>Jarvis is being built to take on 95% of daily workload — desktop work, online work, life admin — under one rule: it takes your direction, then finds the best, fastest, most secure route itself. The last 5% stays human: final sends, payments, credentials, judgment calls. The roadmap is in the repository, and it's included in the $8.99.</p></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap foot-in">
-    <div class="brand" style="font-size:12px"><div class="brand-ring" style="width:26px;height:26px"></div><div>JARVIS<span class="dash">—</span>EDGE</div></div>
-    <span>Built by Edge Agency · MIT License · Models via <a href="https://ollama.com">Ollama</a> · Personas credited to <a href="https://github.com/msitarzewski/agency-agents">agency-agents</a></span>
-    <span class="mono" style="font-size:10px;letter-spacing:.18em">ZERO PAID AI APIS · EST. 2026</span>
+  <div class="wrap foot">
+    <span>Jarvis-Edge — built by Edge Agency. MIT licensed.</span>
+    <span>Models via <a href="https://ollama.com">Ollama</a> · Team personas credited to <a href="https://github.com/msitarzewski/agency-agents">agency-agents</a></span>
+    <span class="mono" style="font-size:11px;letter-spacing:.18em">$8.99 ONCE · EST. 2026</span>
   </div>
 </footer>
 
 <script>
   document.querySelectorAll("[data-copy]").forEach((b) => {
     b.addEventListener("click", async () => {
-      try { await navigator.clipboard.writeText(b.getAttribute("data-copy") || ""); b.textContent = "COPIED ✓"; }
-      catch { b.textContent = "SELECT + COPY"; }
+      try { await navigator.clipboard.writeText(b.getAttribute("data-copy") || ""); b.textContent = "COPIED"; }
+      catch { b.textContent = "COPY MANUALLY"; }
       setTimeout(() => { b.textContent = "COPY"; }, 1800);
     });
   });
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add("on"); }), { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 </script>
 </body>
 </html>
