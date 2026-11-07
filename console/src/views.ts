@@ -1,8 +1,12 @@
-// Views: Feed, Ideas, Goals, Artifacts — plus the main navigation.
+// Views: Feed, Ideas, Goals, Artifacts, Preview — plus the main navigation.
 // All state is local (localStorage). Other modules talk to this one through
-// emitFeed()/addArtifact() and two window events:
+// emitFeed()/addArtifact() and three window events:
 //   "je-mission"     { detail: string }  -> hand text to the Dev Team
 //   "je-queue-add"   { detail: {kind,title,body} } -> handled in main.ts
+//   "je-preview"     { detail: string }  -> render HTML in the sandbox
+
+import { looksHtml } from "./execute";
+import { animateItemIn, animateViewIn } from "./motion";
 
 export interface FeedItem { ts: number; kind: string; text: string }
 export interface Idea { id: string; title: string; note: string; ts: number }
@@ -36,6 +40,7 @@ export function emitFeed(kind: string, text: string) {
   if (feed.length > 120) feed = feed.slice(-120);
   store.set("je-feed", feed);
   renderFeed();
+  void animateItemIn(document.querySelector<HTMLElement>("#feed-list .feed-item"));
 }
 
 function renderFeed() {
@@ -71,6 +76,7 @@ export function addArtifact(title: string, kind: string, body: string) {
   artifacts.unshift({ id: uid(), title, kind, body, ts: Date.now() });
   store.set("je-artifacts", artifacts);
   renderArtifacts();
+  window.dispatchEvent(new CustomEvent("je-artifacts-changed"));
 }
 
 function download(name: string, body: string) {
@@ -110,6 +116,16 @@ function renderArtifacts() {
     dl.textContent = "Download .md";
     dl.addEventListener("click", () => download(`${art.title.replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").toLowerCase() || "artifact"}.md`, art.body));
     head.append(title, meta, dl);
+    if (looksHtml(art.body)) {
+      const pv = document.createElement("button");
+      pv.type = "button";
+      pv.className = "mini-btn";
+      pv.textContent = "▶ Preview in sandbox";
+      pv.addEventListener("click", () => {
+        window.dispatchEvent(new CustomEvent<string>("je-preview", { detail: art.body }));
+      });
+      head.appendChild(pv);
+    }
     const body = document.createElement("div");
     body.className = "artifact-body";
     body.textContent = art.body;
@@ -292,14 +308,17 @@ export function addGoal(title: string) {
 /* ---------------------------------- init ----------------------------------- */
 
 export function switchView(name: string) {
+  let shown: HTMLElement | null = null;
   document.querySelectorAll<HTMLElement>(".view").forEach((v) => {
     const active = v.id === `view-${name}`;
     v.classList.toggle("active", active);
     v.hidden = !active;
+    if (active) shown = v;
   });
   document.querySelectorAll<HTMLButtonElement>(".nav-btn").forEach((b) => {
     b.classList.toggle("active", b.dataset.nav === name);
   });
+  void animateViewIn(shown);
 }
 
 export function initViews(opts: { transcriptText: () => string }) {
