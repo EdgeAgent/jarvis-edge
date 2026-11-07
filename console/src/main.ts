@@ -6,6 +6,7 @@
 import { createReactor, type CoreMode } from "./reactor";
 import { initViews, emitFeed, addIdea, addGoal } from "./views";
 import { initTeam } from "./team";
+import { initBrain } from "./brain";
 
 /* ---------------------------------- types --------------------------------- */
 
@@ -441,7 +442,13 @@ function retrieveBrain(query: string): string[] {
     }
   }
   scored.sort((a, b) => b.score - a.score);
-  return scored.slice(0, 3).map((s) => `[from ${s.doc}]\n${s.chunk}`);
+  const top = scored.slice(0, 3);
+  if (top.length) {
+    window.dispatchEvent(new CustomEvent("je-brain-used", {
+      detail: Array.from(new Set(top.map((s) => s.doc))),
+    }));
+  }
+  return top.map((s) => `[from ${s.doc}]\n${s.chunk}`);
 }
 
 /* ---------------------------------- queue ---------------------------------- */
@@ -792,6 +799,7 @@ renderQueue();
 renderWorkers();
 initViews({ transcriptText: () => transcriptEl.innerText });
 initTeam();
+initBrain();
 emitFeed("system", "Jarvis-Edge console started.");
 void refreshModels();
 addMsg("system", "Reactor Core online · all processing stays on this machine");

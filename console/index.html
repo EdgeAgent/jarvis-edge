@@ -40,6 +40,7 @@
         <button type="button" class="nav-btn" data-nav="ideas">Ideas</button>
         <button type="button" class="nav-btn" data-nav="goals">Goals</button>
         <button type="button" class="nav-btn" data-nav="artifacts">Artifacts</button>
+        <button type="button" class="nav-btn" data-nav="brain">🧠 Brain</button>
         <button type="button" class="nav-btn" data-nav="agents">⚒ Dev Team</button>
       </nav>
 
@@ -173,6 +174,24 @@
         </div>
         <p class="view-sub">Finished work product — mission reports, approved drafts, exports. Everything here can be downloaded and used.</p>
         <div class="artifact-list" id="artifact-list"></div>
+      </section>
+
+      <section id="view-brain" class="view" hidden>
+        <div class="view-head"><h2 class="view-title">Second Brain — the map</h2></div>
+        <p class="view-sub">Your knowledge as a living node graph, Obsidian-style — every document, idea and goal Jarvis knows, linked by what they share. When Jarvis answers from your brain, the nodes he used <b>light up gold</b>. Drag nodes around; click one to read it.</p>
+        <div class="brain-wrap">
+          <canvas id="brain-canvas" width="1200" height="600"></canvas>
+          <div class="brain-detail" id="brain-detail">
+            <strong>Brain map</strong>
+            <p>Click any node to inspect it. Add files in the Command view and the map grows.</p>
+          </div>
+        </div>
+        <div class="brain-legend">
+          <span><i class="dot dot-doc"></i> Document</span>
+          <span><i class="dot dot-idea"></i> Idea</span>
+          <span><i class="dot dot-goal"></i> Goal</span>
+          <span><i class="dot dot-lit"></i> Used in the last answer</span>
+        </div>
       </section>
 
       <section id="view-agents" class="view" hidden>
