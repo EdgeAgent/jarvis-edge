@@ -40,6 +40,7 @@
         <button type="button" class="nav-btn" data-nav="ideas">Ideas</button>
         <button type="button" class="nav-btn" data-nav="goals">Goals</button>
         <button type="button" class="nav-btn" data-nav="artifacts">Artifacts</button>
+        <button type="button" class="nav-btn" data-nav="preview">▶ Preview</button>
         <button type="button" class="nav-btn" data-nav="brain">🧠 Brain</button>
         <button type="button" class="nav-btn" data-nav="agents">⚒ Dev Team</button>
       </nav>
@@ -121,7 +122,12 @@
               <span class="count-badge" id="queue-count">0</span>
             </div>
             <ul class="queue-list" id="queue-list"></ul>
-            <p class="hint">Nothing is ever sent or executed without your approval. Approved items stay local until you act on them.</p>
+            <p class="hint">Nothing executes without your approval — and approval <b>executes</b>. Each item shows its route before you tap.</p>
+            <label class="field">
+              <span>Execution endpoint (optional)</span>
+              <input id="exec-url" type="text" spellcheck="false" placeholder="https://your-n8n-or-make-webhook…" />
+            </label>
+            <p class="hint">Your webhook (n8n / Make / Hermes). Approved items POST there as JSON and <b>your stack</b> does the sending — Jarvis never holds your mail password. Empty = this machine: mail app, notification, or file.</p>
           </section>
 
           <section class="panel" aria-labelledby="vitals-h">
@@ -176,6 +182,25 @@
         <div class="artifact-list" id="artifact-list"></div>
       </section>
 
+      <section id="view-preview" class="view" hidden>
+        <div class="view-head"><h2 class="view-title">Sandbox Preview</h2></div>
+        <p class="view-sub">Apps and HTML Jarvis (or the Dev Team) builds, rendered in a <b>real sandbox</b>: the frame can run its own scripts, but with an opaque origin it cannot touch this console, your files, or your data. Paste HTML, open a file, or send any HTML artifact here from Artifacts.</p>
+        <div class="preview-bar">
+          <select id="preview-picker" class="preview-picker"></select>
+          <button class="mini-btn" id="btn-preview-file" type="button">Open .html file…</button>
+          <input id="preview-file" type="file" accept=".html,.htm" hidden />
+          <button class="mini-btn" id="btn-preview-sample" type="button">Load sample app</button>
+          <button class="cmd-send" id="btn-preview-run" type="button">Run in sandbox</button>
+        </div>
+        <div class="preview-grid">
+          <textarea id="preview-source" class="preview-source" spellcheck="false" placeholder="Paste HTML here, then Run in sandbox…"></textarea>
+          <div class="preview-stage">
+            <div class="preview-caption">SANDBOX · <span id="preview-title">nothing loaded</span></div>
+            <iframe id="preview-frame" class="preview-frame" title="Sandboxed preview" sandbox="allow-scripts"></iframe>
+          </div>
+        </div>
+      </section>
+
       <section id="view-brain" class="view" hidden>
         <div class="view-head"><h2 class="view-title">Second Brain — the map</h2></div>
         <p class="view-sub">Your knowledge as a living node graph, Obsidian-style — every document, idea and goal Jarvis knows, linked by what they share. When Jarvis answers from your brain, the nodes he used <b>light up gold</b>. Drag nodes around; click one to read it.</p>
@@ -210,7 +235,7 @@
 
       <footer class="footbar">
         <span>Local-first by design — models, memory and voice run on your machine.</span>
-        <span class="foot-right">JARVIS-EDGE · Reactor Core v1.1 · Zero paid AI APIs</span>
+        <span class="foot-right">JARVIS-EDGE · Reactor Core v2.2 · Zero paid AI APIs</span>
       </footer>
     </div>
 
