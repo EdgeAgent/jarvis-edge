@@ -1,0 +1,55 @@
+name: Desktop installers
+
+# Builds the Jarvis-Edge desktop installers on native runners.
+# - Run it manually (Actions tab -> "Desktop installers" -> Run workflow)
+#   to get downloadable artifacts for every platform.
+# - Push a tag like v2.0.0 to also attach the installers to a GitHub Release.
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            dist: dist:win
+            artifact: windows-installer
+            path: desktop/dist/*.exe
+          - os: macos-latest
+            dist: dist:mac
+            artifact: macos-installer
+            path: desktop/dist/*.dmg
+          - os: ubuntu-latest
+            dist: dist:linux
+            artifact: linux-installer
+            path: desktop/dist/*.AppImage
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build the console UI
+        working-directory: console
+        run: |
+          npm ci
+          npm run build
+      - name: Build the desktop installer
+        working-directory: desktop
+        run: |
+          npm ci
+          npm run ${{ matrix.dist }}
+      - name: Upload installer as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.path }}
+          if-no-files-found: error
+      - name: Attach installer to the release (tag builds only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.path }}
