@@ -94,12 +94,20 @@ const FALLBACK_ROUTES: Array<{ match: RegExp; team: string[] }> = [
   { match: /video|content|post|social|brand/i, team: ["COPY", "UIDESIGN", "SEO"] },
 ];
 
+function readSetting(key: string, fallback: string): string {
+  // main.ts stores settings JSON-encoded; parse, but tolerate raw values.
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return fallback;
+    try { const parsed = JSON.parse(raw) as unknown; return typeof parsed === "string" ? parsed : raw; }
+    catch { return raw; }
+  } catch { return fallback; }
+}
 function ollamaBase(): string {
-  try { return (localStorage.getItem("je-ollama-url") ?? "http://localhost:11434").replace(/\/$/, ""); }
-  catch { return "http://localhost:11434"; }
+  return readSetting("je-ollama-url", "http://localhost:11434").replace(/\/$/, "");
 }
 function activeModel(): string {
-  try { return localStorage.getItem("je-active-model") ?? ""; } catch { return ""; }
+  return readSetting("je-active-model", "");
 }
 
 /* ------------------------------ sandbox ui -------------------------------- */

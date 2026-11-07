@@ -100,3 +100,21 @@ Apache 2.0 — see [LICENSE](https://opensource.org/licenses/Apache-2.0).
 **Built by Edge Agency — London, Ontario.**
 
 </div>
+
+## Console v2 — the workbench & the Dev Team
+
+The console is now a full workbench: **Command** (chat + reactor), **Feed**
+(everything Jarvis does, in order), **Ideas** (bank them, promote to goals),
+**Goals** (steps + progress), **Artifacts** (finished work, downloadable),
+and the **Dev Team** — a 12-agent agency bench (Lead, Research, Frontend,
+Backend, Senior Dev, UI, UX, Content, SEO, Outbound, Code Reviewer, and a
+Reality Checker) that runs missions in **parallel sandboxes** and files the
+report to Artifacts and the approval queue. Personas adapted from the MIT
+[Agency Agents](https://github.com/msitarzewski/agency-agents) library.
+Proof: docs/assets/steps/step-09 (second brain answering from a loaded
+document) and step-10 (a full mission, all seven sandboxes DONE).
+
+It also ships as a **desktop app** (see desktop/): Electron shell, one-click
+installers via GitHub Actions, and a **Windows tray icon** — close the
+window and Jarvis stays on duty by the Wi-Fi/volume icons.
+
